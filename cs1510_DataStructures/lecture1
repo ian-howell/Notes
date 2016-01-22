@@ -1,0 +1,76 @@
+C++ Pointers
+
+Example code:
+void foo()
+{
+  inx x;
+  int y;
+  x = 3;
+  y = 4 * x;
+}
+
+Memory
+- reserve space for an int in x
+- reserve space for an int in y
+  - These initial start as junk values
+- x = 3 stores the value 3 in x
+- y = 4 * x stores the value 12 in y
+
+- Memory is linear
+  - each location in memory has an address
+    - example: 0x1198, 0x1199, 0x119A, 0x119B, 0x119C, 0x119D, 0x119E, 0x119F, 0x11A0 
+  - x is just an alias for an address
+
+Pointers
+- A pointer is a variable used to store a memory address
+- Declared using the * operator
+- The & operator returns a variable's memory address
+- Pointers carry type
+- Pointer constant NULL. NULL == 0x0000
+- Dereferencing operator: *
+  - Returns the thing a pointer points to (the contents of the stored address)
+- If you're drawing these things, they look like p -> x, and q -> x (if they both point to x)
+  - in this case, p == q
+- Null pointers are are drawn as r -|
+- Derefencing operator can be used on both sides of the assignment operator
+
+void foo()
+{
+  inx x;
+  int y;
+  x = 3;
+  y = 4 * x;
+  // This is an integer pointer
+  int* p;
+  // Put the address of x into p
+  p = &x;
+  // A character pointer
+  char* q;
+  // This line fails because y is an int and q is a character pointer
+  q = y;
+  // This line fails for the same basic reason
+  q = 'c';
+  // These fail because &y and p are int pointers, but q is a character pointer
+  q = &y;
+  q = p;
+  // This is safe
+  int* q = p;
+  // Null pointer
+  int* r = NULL;
+  // Fails: q is an int pointer and &p is the address of an int pointer
+  q = &p;
+  // Safe: s is a pointer to an int pointer and &p is the address of an int pointer
+  int** s = &p;    // int** == (int*)*
+  // Prints out the address of x (0x119C)
+  cout << p;
+  // Prints out x (3)
+  cout << *p;
+  // Prints out p (0x119C)
+  cout << *s;
+  // Prints out x (3)
+  cout << **s;
+  // Sets y == 5       *p == x == 3
+  y = *p + n;
+  // sets x == 15      *p == **s == x == 3        y * *p == 5 * 3
+  **s = y * *p;
+
