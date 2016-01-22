@@ -1,0 +1,163 @@
+Introduction to Python
+
+Conceptualized in 1989
+Released in 1991
+Python2 came out in 2000
+Python3 came out in 2008
+
+Made by a guy called GVR basically
+- He's still the head honcho. Nothing gets into Python
+  without getting through him
+
+Python Development
+PEP - Python Enhancement Proposals
+- define new features for PYthon or important
+  information to Python
+- PEP8 is the Style Guide for Python Guide USE IT
+- PEP20 is basically: Write pythonic code. Always.
+  - Examples: Beautiful is better than ugly, readability counts
+
+PEP8
+- Defines what good Python style is
+- FOLLOW IT
+- There exists a program called pep8 which checks Python code
+  for adherence to PEP8
+- flake8 apparently helps too. Not sure how...
+
+Why do people like Python?
+- Easy to read
+- Easy to write
+- Rapid prototyping
+
+What is it used for?
+- General purpose
+- Web Apps
+- Data mining
+
+THINGS TO KNOW
+- Using Python3.4
+  - Its on the lab machines
+  - Make sure to use the correct docs
+- Assignments have to adhere to PEP8
+
+Python interpreter uses REPL
+- Read
+- Evaluate
+- Print
+- Loop
+
+Quick Facts
+- Comment lines start with a #
+- The print function writes to the console
+  - Defaults to printing a newline
+- Variables are declared and assigned in one step
+  - Example: x=10
+- There is no compile step (It's an interpreted language...)
+
+Types
+- Numbers
+  - Integer (int)
+  - Floating Point (float)
+- Boolean (bool)
+  - True
+  - False
+- Strings (of characters) (str)
+  - Iterable
+  - Examples:
+    - "frog"
+    - 'frog'
+    - NOTE: be consistent in your code
+    - "" (empty string)
+- There is no character (char) type
+  - however, a string may consist of length = 1
+  - Example: 'b'
+- None
+  - There's only one value for a None type
+  - It's kinda like Null
+  - Example: x = None
+
+Built-In Data Structures
+- List
+  - Iterable
+  - Mutable sequence of elements
+  - Elements can have different types
+  - Examples:
+    - [1]
+    - [1, 2, 3]
+    - [1, 2, "frog", 5]
+    - [] (The empty list)
+    - x = [1, 2]
+  Mutable:
+  - x = [1]
+  - x.append(2)
+  - print(x) # [1, 2]
+  Indexing:
+  - Begins at 0
+  - For example, if x = ['a', 'b', 'c']
+    then x[0] # 'a'
+    and x[2]=10 # x=['a', 'b', 10]
+  - Index errors exist: i.e. x[500] # Index error
+  Slice:
+  - Examples:
+    - x = ['a', 'b', 'c', 'd', 'e', 'f']
+      x[0:2] # ['a', 'b']
+      x[3:5] # ['d', 'e']
+      x[:2] # ['a', 'b']
+      x[3:] # ['d', 'e', 'f']
+      x[3:0] # []
+      x[3:3] # []
+      x[:] # a copy of x
+    - x = ['a', 'b', 'c']
+      x[-1] # 'c'
+Tuples
+- Iterable
+- Immutable sequence of elements
+- Elements can have different types
+- Tuples of size 1 must have a comma
+- Examples
+  - t = (1, 2)
+  - x = (1, "frog")
+  - x[0] # 1
+  - x[1] # "frog"
+  - x[1] = "more frog" # TypeError
+  - u = (1,)
+- Slices and Negative indices also work here
+
+Dictionary
+- Iterable (iterates over keys by default)
+- Type is 'dict'
+- Maps keys to values
+- Keys and values can both vary in type
+- IS NOT A SEQUENCE
+  - Can't depend on keys being in a particular order
+- Examples
+  - x = {'a':"frog", 'b':"giraffe"}
+  - y = {'a':"frog", 10:"giraffe"}
+  - Getting values:
+    - x['a'] # "frog"
+    - y[10] # "giraffe"
+    - x["fake"] # KeyError
+    - a = {} (empty dict)
+  - Setting values:
+    - x['a'] = "more frog"
+    - a['k'] = 10 # a == {'k':10}
+
+Custom Types
+- You can define your own types
+  - class-based object-oriented programming
+
+Assignment
+- Variables are dynamically typed
+  - x = 10
+    print(type(x)) # <class 'int'>
+    x = "abc"
+    print(type(x)) # <class 'str'>
+- Variable Unpacking
+  - (a, b) = (1, 2)
+    print(a) # 1
+    print(b) # 2
+    (c, d) = [3, 4] # same thing...
+    e, f = 5, 6 # same thing...
+    e, f = f, e # valid swap
+    a, b = (1, 2, 3) # ValueError
+    a, b = 1 # TypeError
