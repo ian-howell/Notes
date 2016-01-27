@@ -1,0 +1,91 @@
+Operators
+
+Arithmetic
+- [+, -, /, *, //, **, %]
+- // is floor division
+  - The standard / does floating point division, so 5/2 == 2.5
+- ** is exponentation
+
+Shorthands
+- [+=, -=, *=, /=, //=, **=, %=]
+- There are no ++ or -- operators
+
+Relational Operators
+- [==, !=, >=, <=, <, >]
+
+Logical Operaters
+- [not, and, or]
+
+Other operators
+- in
+  - returns True of False if an element is found in an iterable
+  - Example:
+    - x = [1, 2, 3, 4, 5]
+    - 4 in x # True
+    - y = {'a':10, 'b':50}
+    - 'a' in y # True
+    - 50 in y # False
+    - 50 in y.values() # True
+- is
+  - returns True or False if one variable is the same as the other
+  - Just like, don't use it unless you're comparing to None
+  - ALSO: This is NOT ==
+
+Control Structures
+
+if statements
+  - Do not use parentheses or curly braces
+  - if <condition>:
+        stuff
+    elif <condition2>:
+        stuff
+    else:
+
+"False": False, None, numeric zero, empty strings, empty containers
+
+while loops
+  - while <condition>:
+        #stuff
+
+Iterable:
+- an object that can return its members one at a time
+- Examples:
+  - lists, strings, dicts, tuples, file objects
+
+for loops
+- for x in <iterable>:
+      #stuff
+- x = [4, 5, 6]
+- for i, v in enumerate(x):
+      print(i, v)
+- for i in range(10):
+      print(i) # prints 0 up to and including 9
+- So these can have else statements, example
+  - for x in y:
+        print(x)
+    else:
+        print("Done")
+  - It only hits the else statement if no breaks or exceptions are hit
+
+Unpacking a dictionary
+- y = {'a':10, 'b':50}
+- for x in y:
+      print(x) # 'a' 'b'
+- for k, v in y.items():
+      print(k, v)
+- for v in y.values():
+      print(v)
+
+pass does nothing. It's needed when you write a loop or function that doesn't do anything
+
+Functions
+- Syntax:
+def foo(bar1, bar2):
+    pass
+- When calling a function, order matters for parameters
+
+def add(x, y, z):
+    return x+y+z
+
+add(1,2,3) # 6
+add(1,2) #TypeError
