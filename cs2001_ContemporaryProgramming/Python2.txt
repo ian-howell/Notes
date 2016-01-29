@@ -66,6 +66,7 @@ for loops
     else:
         print("Done")
   - It only hits the else statement if no breaks or exceptions are hit
+- for i in mylist[first:last:skip_by]
 
 Unpacking a dictionary
 - y = {'a':10, 'b':50}

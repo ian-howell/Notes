@@ -159,6 +159,44 @@ print_name(x) # Frank
 y = {'id':345}
 print_name(y) # Person has no name
 ---------------------------------------------------------
+More Exceptions
+- All exceptions are instances of classes
+- All exceptions derive from the 
+    BaseException class (ie inheritance)
+- Most derive from Exception
+- This is a big list of builtin exceptions in the Python docs
+- You can make your own exceptions!
+
+try:
+    f = open("fake.txt")
+except FileNotFoundError as e:
+    print("Caught an exception", e)
+except IsADirectoryError as e:
+    print(e)
+---------------------------------------------------------
+Default exceptions (catch-all)
+try:
+    f = open('fake.txt')
+except:
+    print("Shit's broke")
+else:
+    print("Gets executed if we make it through the try ")
+    print("without hitting an exception")
+---------------------------------------------------------
+try:
+    f = open('fake.txt')
+except:
+    pass
+else:
+    print("No exceptions handled")
+finally:
+    print("This gets run always")
+---------------------------------------------------------
+# raise your own exceptions
+raise ValueError("Nope")
+---------------------------------------------------------
+---------------------------------------------------------
+---------------------------------------------------------
 ---------------------------------------------------------
 ---------------------------------------------------------
 ---------------------------------------------------------
