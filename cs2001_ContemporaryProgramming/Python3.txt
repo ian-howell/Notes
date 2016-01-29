@@ -65,9 +65,45 @@ for i in n[1::2]:
     print(i)
 # prints odd indices
 ---------------------------------------------------------
+# Multiline string
+# Whitespace on the left is preserved. unfortunately
+def func(a):
+    a = '''
+    Hey
+    How
+    are
+    you
+    '''
+---------------------------------------------------------
+# Example of doc string (documentation)
+# USES PEP0257
+def func(b):
+    ''' This function prints out a msg
+    :param str b: the msg
+    return: None
+    rtype: None
+    raises SomeError if b is too long
+    '''
+    print(b)
+---------------------------------------------------------
+#Naming Conventions
+- Don't use names defined in the Python Standard library
+- Variables, functions, classes should not clash
+#BAD
+list = [1, 2, 3]
+str = 5
+---------------------------------------------------------
+Exception Handling
+1. Syntax Error
+- your code is bad
+- Python cannot read your code
+- Example:
+    fir i in range(10):
+2. Run-Timer Error
+- Your logic is bad
 ---------------------------------------------------------
 ---------------------------------------------------------
 ---------------------------------------------------------
 ---------------------------------------------------------
 ---------------------------------------------------------
-
+---------------------------------------------------------
