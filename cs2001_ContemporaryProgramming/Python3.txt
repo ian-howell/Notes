@@ -101,7 +101,63 @@ Exception Handling
     fir i in range(10):
 2. Run-Timer Error
 - Your logic is bad
+- Python encountered a problem, and cannot
+    continue without assistance
+- Example:
+    for i in [1, 2, 3]:
+        pront(i) #Raises a NameError exception
+- Whenever a run-time error occurs, an exception
+    is thrown
+    - "throw" == "raise"
+- Helpful for tracking/locating logical errors in code
+
+x = {'a':10, 'b':50}
+print(x['c']) #Raises KeyError
+
+# Interpreter shows this:
+Traceback...
+.........#files/functions involved
+KeyError: 'c'
 ---------------------------------------------------------
+Exceptions
+- Whenever an exception is thrown, it "bubbles up"
+    the function call stack until it is either
+    caught and handled, or it reaches the top
+- Exceptions can be caught and handled as appropriate
+
+#unhandled.py
+def inc_by_4(val):
+    return val + 4
+
+
+def inc_list_by_4(lst):
+    new_list = []
+    for v in lst:
+        new_list.append(inc_by_4(v))
+    return new_list
+
+
+def main():
+    x = [1, 2, 3, "frog"]
+    y = inc_list_by_4(x) #TypeError
+    print(y)
+
+
+main()
+---------------------------------------------------------
+#handled.py
+def print_name(person):
+    try:
+        print(person['name'])
+    except KeyError:
+        print("Person has no name")
+
+
+x = {'name':'Frank', 'id':123}
+print_name(x) # Frank
+
+y = {'id':345}
+print_name(y) # Person has no name
 ---------------------------------------------------------
 ---------------------------------------------------------
 ---------------------------------------------------------
