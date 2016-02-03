@@ -1,0 +1,129 @@
+File IO
+- Using the built-in function open()
+  - Use it like a normal function
+  - Use it as a context manager
+
+Reading Files
+# Use open as a regular function
+f = open("myfile.txt")
+contents = f.read()
+print(contents)
+f.close()
+
+# Use open() as a context manager (for reading)
+# When we enter the 'with' block, myfile.txt is opened
+# and we get a handle called f
+# When we exit the 'with' block, the file is
+# automatically closed for us
+with open("myfile.txt") as f:
+    contents = f.read()
+print(contents)
+
+Writing files
+# Use open() as a regular function
+f = open("myfile.txt", "w")
+f.write("frog\n")
+f.close()
+
+# Use open() as a context manager (for reading)
+with open("myfile.txt", "w") as f:
+    f.write("frog\n")
+
+Exceptions thrown by open
+- All exceptions thrown by open
+  derive from OSError
+- FileNotFoundError - thrown when trying to read a nonexistent file
+- IsADirectory - thrown when attempting to open a directory as a file
+- FileExistsError - thrown when attempting
+  to write to a file when using 'x' mode
+    - 'x' mode is for exclusive write
+
+# Since all exceptions derive from OSError, we can just catch all of them
+# by excepting OSError
+try:
+    with open("myfile.txt") as f:
+        print(f.read())
+except OSError:
+    print("thing")
+
+Reading Files
+- Go look at the Python docs!
+- read() method returns all file contents
+- readline() returns a line from a file
+- Use a file handle as an iterable in a for loop
+
+Modules
+- You can out Python code in seperate files (AKA modules)
+- You can import things from one module into a different module
+- You can use a module like a library or like a script/program
+
+EXAMPLE: m1.py and m2.py are in the same directory
+# m1.py
+def m1_func():
+    print("frog")
+
+#m2.py
+import m1
+def m2_func():
+    print("potato")
+
+# When a Python script/program is run, the module that is run will
+# have its __name__ attribute set to "__main__"
+if __name__ == "__main__":
+    m1.m1_func()
+    m2.func()
+
+#m3.py
+def m3_func():
+    print("hello")
+def friend():
+    print("ok")
+
+#m4.py
+from m3 import m3_func
+def m4_func():
+    print("no")
+
+if __name__ == "__main__":
+    m3_func()
+    m4_func()
+
+Classes
+- Generally, though not necessarily, it is a good idea to
+  put a class in its own module
+- `self` refers to the calling object
+- member functions are called methods
+- There are no private members
+- There is a convention: members prefixed with '_' are considered "private"
+    - Example: obj._write() # "private"
+- Special member functions start with "__" and end with "__"
+    - Overloading operators
+    - Used by some built-in functions(str)
+
+#dog.py
+class Dog:
+    """A Dog class
+    """
+    def __init__(self, name, weight):
+        """ Constructor : param:... etc..."""
+        # Note that these variables are being declared right now
+        self.name = name
+        self.weight = weight
+
+    def bark(self):
+        print("woof, I am", self.name)
+
+    def eat(self, food):
+        """Doc strings"""
+        self.weight += len(food)
+
+    def __lt__(self, rhs):
+        return self.weight < rhs.weight
+
+frank = Dog("Frank", 50)
+print(frank.name) " Frank
+bob = Dog("Bob", 70)
+print(bob.name) # Bob
+bob.bark() # woof, I am Bob
+
+if frank < bob # True, frank weighs less than bob
