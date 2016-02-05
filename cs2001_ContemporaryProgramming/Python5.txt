@@ -7,18 +7,15 @@ str.format()
     # Next line assumes a kennel class exists
     'Dogs in kennel: {0.numberOfDogs}'.format(kennel)
 ------------------------------------------------------------------------------
-
 Exception creation
     class MyError(Exception):
         pass
-
 ------------------------------------------------------------------------------
 # import datetime
 from datetime import datetime
 d = datetime(2016, 2, 4, ...)
-
 ------------------------------------------------------------------------------
-Argument list and Star Magic
+Argument list
 def func1(a, b, c):
     print(a, b, c)
 
@@ -30,15 +27,71 @@ func2('a', 'b', 'c')    # a b c
 
 func1(a=12, b=13, c=14) # 12 13 14
 func1(b=12, c=13, a=14) # 14 12 13
+------------------------------------------------------------------------------
+Star Magic
+def custom_print(*args):
+    for i in args:
+        print(i)
 
+custom_print('hey', 'yoo')  # hey you
 ------------------------------------------------------------------------------
+def custom_print2(**kwargs): # kwargs == keyword args
+    for i in kwargs:
+        print('{}: {}'.format(i, kwargs[i]))
+
+custom_print2(ocelot='awesome', warbler='boring bird')
+# ocelot: awesome
+# warbler: boring bird
 ------------------------------------------------------------------------------
+arglist = ['magpie', 'warbler', 'ettin']
+func1(arglist) #TypeError
+func1(*arglist) #this works
 ------------------------------------------------------------------------------
+func1(**{'c':12, 'a':13, 'b':14})
+# 13 14 12
 ------------------------------------------------------------------------------
+Generator functions
+- Easy way to make custom iterators in Python
+- When called, a generator function will return
+    an object of type 'generator'
+- Like any iterable, generators yield one item at a time
+- We determine the next index to yield on the fly
+- We cannot index a generator
+- We cannot slice a generator
+- Generator function can be a method (ie, member function)
 ------------------------------------------------------------------------------
+#count to
+def count_to(num):
+    i = 0
+    while i < num:
+        yield i
+        i += 1
+
+myCounter = count_to(5)
+for val in myCounter:
+    print(i)
 ------------------------------------------------------------------------------
+# count 4ever!
+def count4ever(start=0):
+    i = start
+    while True:
+        yield i
+        i += 1
+
+for val in count4ever():
+    print(val)
+    if val == 10:
+        break
 ------------------------------------------------------------------------------
-------------------------------------------------------------------------------
+# First N
+def first_n(num, iterable):
+    for i, val in enumerate(iterable):
+        if i < num:
+            yield val
+        else:
+            return
+
+
 ------------------------------------------------------------------------------
 ------------------------------------------------------------------------------
 ------------------------------------------------------------------------------
