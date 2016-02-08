@@ -1,0 +1,53 @@
+Data Structure
+ArrayList
+
+<a, p, e, n, l>
+- this is represent in memory by a class that has 3 member variables:
+    - m_data - a pointer to an array,
+    - m_max - the capacity of the array
+    - m_size - the number of useful items in the array
+- insert(l, i, x)
+    - inserts x at position i in the list l
+
+class ArrayList
+{
+    T* m_data;
+    int m_size;
+    int m_max;
+
+    void insert(int i, T& x)
+    {
+        // Check that i is valid
+        if (i >= 0 && i <= m_size)
+        {
+
+            // Check that the array is not full
+            if (m_max == m_size)
+            {
+                // Create a new bigger array
+                T* tmp = T[m_max * 2];
+
+                // Copy values from old array to new array
+                for (int k = 0; k < m_size; k++)
+                {
+                    tmp[k] = m_data[k];
+                }
+
+                // Delete old array
+                delete [] m_data;
+
+                // Reassign new array to old array
+                m_data = tmp;
+
+                delete tmp;
+
+                // Update m_max
+                m_max++;
+            }
+
+            // Shift elements at positions >= i to the right
+            // Insert x
+            // Increment size
+        }
+    }
+}
