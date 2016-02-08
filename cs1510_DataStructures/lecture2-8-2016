@@ -39,10 +39,8 @@ class ArrayList
                 // Reassign new array to old array
                 m_data = tmp;
 
-                delete tmp;
-
                 // Update m_max
-                m_max++;
+                m_max *= 2;
             }
 
             // Shift elements at positions >= i to the right
