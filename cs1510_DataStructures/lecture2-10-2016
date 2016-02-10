@@ -45,6 +45,7 @@ NEW IMPLEMENTATION
 - Want to represent L1 = <a, x, b, c, d>
 - Use a linked list
 L1 = a -> x -> b -> c -> d -> (sentinel) -> NULL
+- Empty list is just the sentinel
 
 template<typename T>
 class LinkedList
@@ -53,3 +54,17 @@ private:
     T m_data;
     LinkedList* m_next;
 
+public:
+    const T& front() const
+    {
+        if (m_next != NULL)
+            return m_data;
+        else
+            // ERROR
+    }
+
+    int size() const
+    {
+        int counter = 0;
+
+    }
