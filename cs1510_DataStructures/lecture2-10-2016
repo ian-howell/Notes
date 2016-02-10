@@ -1,0 +1,55 @@
+DS ArrayList
+
+void insert(int i, T& x)
+{
+    // Check that i is valid
+    if (i >= 0 && i <= m_size)
+    {
+        // Check that the array is not full
+        if (m_max == m_size)
+        {
+            // Create a new bigger array
+            T* tmp = T[m_max * 2];
+
+            // Copy values from old array to new array
+            for (int k = 0; k < m_size; k++)
+            {
+                tmp[k] = m_data[k];
+            }
+
+            // Delete old array
+            delete [] m_data;
+
+            // Reassign new array to old array
+            m_data = tmp;
+
+            // Update m_max
+            m_max *= 2;
+        }
+
+        // Shift values
+        for (int k = m_size; k > i; k--)
+        {
+            m_data[k] = m_data[k-1]
+        }
+        // Insert x at i
+        m_data[i] = x;
+
+        // Increment size
+        m_size++;
+    }
+}
+
+
+NEW IMPLEMENTATION
+- Want to represent L1 = <a, x, b, c, d>
+- Use a linked list
+L1 = a -> x -> b -> c -> d -> (sentinel) -> NULL
+
+template<typename T>
+class LinkedList
+{
+private:
+    T m_data;
+    LinkedList* m_next;
+
