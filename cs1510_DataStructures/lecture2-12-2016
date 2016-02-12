@@ -11,4 +11,12 @@ public:
     int size() const
     {
         int counter = 0;
-        LinkedList* r = this;
+        const LinkedList* r = this;
+        while (r->m_data != null)
+        {
+            counter++;
+            r = r->m_next;
+        }
+
+        return counter;
+    }
