@@ -1,0 +1,14 @@
+DS LinkedList
+
+template<typename T>
+class LinkedList
+{
+private:
+    T m_data;
+    LinkedList* m_next;
+
+public:
+    int size() const
+    {
+        int counter = 0;
+        LinkedList* r = this;
