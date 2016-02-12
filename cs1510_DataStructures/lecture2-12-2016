@@ -12,11 +12,39 @@ public:
     {
         int counter = 0;
         const LinkedList* r = this;
-        while (r->m_data != null)
+        while (r->m_data != NULL)
         {
             counter++;
             r = r->m_next;
         }
 
         return counter;
+    }
+
+    // THIS IS WAY TOO C-LIKE
+    void insert(int index, const T& newThing)
+    {
+
+        int i = 0;
+        const LinkedList* r = this;
+        if (index < 0)
+        {
+            //ERROR
+        }
+
+        while (i < index && r->m_next != NULL)
+        {
+            r = r->m_next;
+            i++;
+        }
+
+        if (r->m_next == NULL)
+        {
+            //ERROR
+        }
+        else
+        {
+            newThing->m_next = r->m_next;
+            r->m_next = &newThing;
+        }
     }
