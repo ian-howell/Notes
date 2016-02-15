@@ -1,3 +1,4 @@
+// Precondition: p points to a location in the list
 void insert(LinkedList* p, const T& x)
 {
     // Create a new container
