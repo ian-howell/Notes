@@ -1,0 +1,17 @@
+void insert(LinkedList* p, const T& x)
+{
+    // Create a new container
+    LinkedList* tmp = new LinkedList;
+
+    // Copy p into the new container
+    tmp->m_data = p->m_data;
+    tmp->m_next = p->m_next;
+
+    // Add tmp into the list
+    p->m_next = tmp;
+
+    // Replace old p->m_data with x
+    p->m_data = x;
+
+    return;
+}

@@ -22,6 +22,7 @@ public:
     }
 
     // THIS IS WAY TOO C-LIKE
+    // DON'T ACTUALLY DO THIS
     void insert(int index, const T& newThing)
     {
 
