@@ -16,3 +16,47 @@ void insert(LinkedList* p, const T& x)
 
     return;
 }
+
+
+// Precondition: p points to a location in the list, and the list is not empty
+void remove(LinkedList* p)
+{
+    // Make a temporary pointer to the following item
+    LinkedList* tmp = p->next;
+
+    // Duplicate the next item into the item do be deleted
+    p->m_data = tmp->m_data;
+    p->m_next = tmp->m_next;
+
+    // Delete tmp
+    delete tmp;
+
+    return;
+}
+
+
+Encapsulated LinkedList
+- Uses 2 classes to store the linked list, one for each node, and one for the
+  list itself
+
+
+Doubly LinkedList
+- Has an extra member variable - m_prev
+- Also needs another sentinel at the front
+
+class DoublyLinkedList
+{
+private:
+    T m_data;
+    DoublyLinkedList* m_next;
+    DoublyLinkedList* m_prev;
+
+public:
+    void insert(DoublyLinkedList* p, const T& x)
+    {
+        // Create a new element
+        DoublyLinkedList* tmp = new DoublyLinkedList;
+
+        // Insert data
+
+}
