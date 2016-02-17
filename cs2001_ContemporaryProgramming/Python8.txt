@@ -65,6 +65,15 @@ Noteworthy pip commands
 The python command (in a virtualenv) will execute the version of Python that
     was specified w/ the --python during the creation of the virtualenv
 -------------------------------------------------------------------------------
+Very rapid Crash Cource on how the web works!
+- Webserver is a ccomputer connecting to the internet. It runs a server called
+  pyhtonserver.py
+  - it just sits there and waits for someone to ask for stuff
+  - eg it might be called megaminerai.com
+  - So if someone tries to use a browser to go to megaminerai.com/, it sends an
+    HTTP GET Request to the webserver
+  - The webserver then returns the things it holds. In the example we did in
+    class, it was the string 'Hello World'
 -------------------------------------------------------------------------------
 -------------------------------------------------------------------------------
 -------------------------------------------------------------------------------
