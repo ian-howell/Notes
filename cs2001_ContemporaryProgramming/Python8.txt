@@ -1,0 +1,72 @@
+Existing Packages
+- Packages can be configuredd to be distributed
+- Tons of packages available online through the Python Package Index
+  - pytest
+  - flake8
+  - Django
+- Packages can be install using `pip` or `easy_install`
+  - pip install python
+  - For example:
+    $ sudo pip install flake8 system_wide
+-------------------------------------------------------------------------------
+Virtual Environment
+- Consider the followingL
+    - Project A
+      - depends on frog == v0.2
+    - Project B
+      - depends on frog == v1.5
+- Basic idea for dealing with this is to create an isolated environment where
+  you can install packages for a specific project
+
+Basic Usage of Virtual Environments
+$ virtualenv --python=$(which python3.4) env
+                                         ^^^this is the name of the virtual env
+                      ^^^^^ tells virtualenv which version of python to use
+$ ls
+main.py
+$ virtualenv --python=$(which python3.4) env
+.....
+$ ls
+env/ main.py
+^^^ This is where the virtual env is. This should never be added to a git repo
+
+-Things
+* READ flake8 and py.test scripts from hw02 and hw03
+* DONT add virtualenvs to git repos or push them to gitLab/Hub/BitBucket/etc
+
+$ source env/bin/activate     #activate/enter the virtualenv. This is a comment
+(env)$ ls
+env/ main.py
+(env)$      # This tells us that we're in the virtualenv
+(env)$ pip install flake8
+....install stuff...
+(env)$ flake8 *.py   # now we can run flake8
+(env)$ deactivate    # Leaves the venv
+pip install bottle   # Likely complain about permissions, since its trying to
+                     # install system-wide
+
+$ source env/bin/activate   # Now back into the venv
+(env)$ pip freeze     # outputs all installed packages
+            # We could just redirect that like (pip freeze > reqs.txt)
+-------------------------------------------------------------------------------
+Noteworthy pip commands
+- pip install <package>
+    - installs <package>
+- pip install -r <filename>
+    - install packages listed in the newline-delimited file
+        -example: pip install -r requirements.txt
+- pip uninstall <packagename>
+    - pretty self-explanatory
+- pip search <name/fragment>
+    - searches for a package in the PyPI
+- pip freeze
+    - outputs install packages and installed versions of those packages
+-------------------------------------------------------------------------------
+The python command (in a virtualenv) will execute the version of Python that
+    was specified w/ the --python during the creation of the virtualenv
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
