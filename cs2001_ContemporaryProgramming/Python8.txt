@@ -74,7 +74,48 @@ Very rapid Crash Cource on how the web works!
     HTTP GET Request to the webserver
   - The webserver then returns the things it holds. In the example we did in
     class, it was the string 'Hello World'
+
+- HTTP Requests
+    - GET Request - used to read stuff -> bottle uses @get(pathname)
+    - POST Request - used to create stuff -> bottle uses @post(pathname)
+                -eg @post('/add/') creates a page??
+    ************* Don't worry too much about the following requests
+    - PUT
+    - HEAD
+    - DELETE 
+    *************
+
+    @get('/')
+    def list(obs():
+        pass
+
+
+    @get('/add/')
+    def show_obs_form():
+        pass
+
+
+    @post('/add/')
+    def proccess_obs():
+        pass
 -------------------------------------------------------------------------------
+The rest of Python (kinda)
+Alternate interpreters
+- Jython - runs on JVM
+- IronPython - .NET and Mono
+- Cython
+  - A superset of Python that permits the addition of type information
+  - Boosts performance
+- Pypy
+  - JIT (Just In Time) compiled Python
+  - Improves performance, usually
+
+Noteworthy Libraries
+- Numpy/Scipy - numerical stuff. Like MATLAB
+- Pandas - Data analysis
+- Orange - Data mining
+- Django - Web framework
+- asyncio - asynchronous code - runs functions concurrently
 -------------------------------------------------------------------------------
 -------------------------------------------------------------------------------
 -------------------------------------------------------------------------------
