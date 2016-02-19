@@ -1,0 +1,119 @@
+A Quick History of Javascript
+- Created in May 1995 by Brendan Eich as Mocha
+- first released as LiveScript
+
+Brendan Eich
+- Created Javascript in 10 days
+- Cofounded Mozilla
+- Owned Javascript engine until 2011
+
+Trouble
+- Microsoft created JScript for IE because they're dicks
+
+ECMAScript
+- the language specs
+- describes things like syntax
+- There's lots of Javascripts. This thing keeps them standards
+- Latest version: 6
+
+Javascript Implementations
+- SpiderMonkey - Firefox
+- V8 - Google Chrome and Node.js
+- Chakra - IE and Edge
+
+Why Do People Like It?
+- It was in the right place at the right time
+- Provides interactivity within the browser
+    - reduces server load
+    - fast
+- easy to write code that runs concurrently
+
+What is it Used For?
+- Client-side scripting
+- Server-side scripting
+
+THINGS
+- We're using Node.js 4.3.1 (server-side) and Firefox (client-side)
+- Assignments must adhere to the Google Javascript Style Standard
+    - Good style is important
+-------------------------------------------------------------------------------
+Quick Facts
+- Javascript is dynamic, untyped, interpreted
+- Comments:
+    - Single line: //
+    - Multi line: /* */
+- Printing: console.log('Hello World!')
+- Declare/assign in many ways
+    var x = 10;
+    var y; y = 5
+    var x = 10, y = 5;
+- There is no compile step
+- ALWAYS USE SEMICOLONS AT END OF STATEMENTS!!!
+    - Function expressions need semicolon, but not function declaration
+- Always use var
+    - not doing so can clobber global variables
+- Case-sensitive
+-------------------------------------------------------------------------------
+Types
+- JS is loosely/dynamically typed
+    - ie, you don't specify the type ahead of time
+- Primitive/Simple Types
+    - Number - floating point
+    - Boolean - true/false
+    - String - single quotes, double quotes
+        - prefer single quotes (Because Google Style Guide)
+        - myString.length
+    - There is no char type, only single character strings
+Null
+    - Used in places where an object can be expected but is not yet relevant
+        - eg var myObj = null;
+    - There is only one (like None)
+Undefined
+    - A variable with no value yet is of type/value undefined
+    - Returned from a function if no return occurs
+    - Useful for checking if a variable has a value
+-------------------------------------------------------------------------------
+Symbols (ES6 only)
+- A unique and immutable primitive value that can only be used as the key of 
+  an Object property
+- These are called atoms in other languages
+    (comparable to enum)
+-------------------------------------------------------------------------------
+Objects
+- A collection of properties
+- A property is a pairing of keys to values
+    - key -> string
+    - value -> anything
+- Object Literal Syntax
+    var x = {id:5, name:'Pete', dog:{}};
+    var x;
+    x.id = 5; // TypeError
+    x = {}
+    x.id = 5;
+    x.name = 'Pete';
+    x.dog = {};
+    x['name'] = 'Tyler';
+-------------------------------------------------------------------------------
+Assignment
+- Variables are dynamically typed
+- We can reassign them
+    var x = 12;
+    x = 'Stuff';
+    console.log(typeof(x));     // string
+- Do no use Object or Array constructors
+    - DON'T DO THIS
+        var x = Array();
+        var x = Object();
+
+- Number + string does concatination
+- Boolean + string is same
+- string + string is same
+-------------------------------------------------------------------------------
+Arrays
+- declare as
+    var list = [5, 'hello', , {}] // Be explicit about when you use undefined!
+- Zero indexed
+-------------------------------------------------------------------------------
+Operators
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
