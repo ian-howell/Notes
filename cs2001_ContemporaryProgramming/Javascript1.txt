@@ -115,5 +115,25 @@ Arrays
 - Zero indexed
 -------------------------------------------------------------------------------
 Operators
+- Numerics
+    + - * / % 
+- Assignments
+    += -= *= /= %=
+- Increments/Decrement
+    ++ --
+    - Pre/Post affixable
+- Comparison
+    < > <= >=
+
 -------------------------------------------------------------------------------
+Variable Hoisting
+- Variables float to the top
+    - ie.
+        console.log(x === Undefined);
+        var x = 3;
 -------------------------------------------------------------------------------
+Scope
+- Blocks do not have scope, only functions have scope
+- If you define a variable with var inside of a compound statement, such as
+  an `if` control structure, it is visible to the entire function
+- With ES6, the `let` and `const` declarations allow you to get block scoping*
