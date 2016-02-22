@@ -1,0 +1,25 @@
+Introduction to Algorithm Complexity
+===================================
+
+Time complexity
+ - Empirical Approach
+    - Actually time each program
+ - Analytical Approach
+    - Use math to compare the 2 programs
+    - Model the performance by a mathematical object
+      - Using a runtime function
+        - T[A](input size) - the time that program A takes
+        - Assume the worst quality input size
+    - Example: 
+        - T[A](x) = (1/3)x^3 + 10
+        - T[B](x) = 12x + 25
+  - Big-Oh
+    - We say the f(x) is O(g(x)) if there exists constants c and n[0] such that
+      for every n > n[0], f(n) <= c*g(n)
+    - if f(x) is O(g(x)), then the rate of growth of g(x) is greater than
+      or equal to the rate of growth of f(x) ignoring constant factors
+    - Example
+      - show n^2 is O(n^3)
+        - C = 1
+        - n[0] = 2
+        - n^2 <= n^3 for 3...
