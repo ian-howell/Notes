@@ -1,0 +1,165 @@
+Assignment
+- Is reference-y
+    var x = [];
+    var y = x;
+    y.push('frog');
+    console.log(x); // ['frog']
+-------------------------------------------------------------------------------
+Primitive Types
+- A primitive is data that is not an object and has no methods
+    - string
+    - number
+    - boolean
+    - null
+    - undefined
+    - symbol
+- All primitives are immutable
+- NOTE: typeof(null) is object which is widely considered to be a language bug
+-------------------------------------------------------------------------------
+Primitive Wrapper Objects
+- String wraps strings
+- Number wraps numbers
+- Boolean wraps booleans
+- Symbol
+- example:
+    'frog'.toUpperCase();  // 'FROG'
+    // acts like
+    (new String('frog')).toUpperCase();  // 'FROG'
+
+    (1).toString();   // '1'
+        //  (You have to use parenthesis or else you'll get a syntax error
+-------------------------------------------------------------------------------
+Objects
+- Just about every value is an object
+- Includes:
+  - Booleans (treated as objects)
+  - Number (treated as objects)
+  - Strings (treated as objects)
+  - Dates (always objects)
+  - Arrays (always objects)
+  - Objects (always objects)
+  - Functions (always objects) 
+  - RegularExpressions (always objects)
+-------------------------------------------------------------------------------
+Another Example involving Primitives and Objects
+  typeof('frog'); // primitive string
+  typeof(String('frog')); // primitive string "non-constructor call to String"
+
+  typeof(new String('frog')); // an object
+  typeof(Sring(1)); // returns the primitive string '1'
+
+More Primitives
+- Javascript will implicitly convert a primitive to its corresponding 
+  wrapper object
+- Remember, primitives ARE NOT objects even though you can often
+  use them as though they were
+-------------------------------------------------------------------------------
+Scoping / Hoisting
+- What has scope?
+  - Only Functions! unless you're running JS code in strictmode
+
+  function f() {
+      x = 11;
+      console.log('1st', x);
+      if ('bananas') {
+          const x = 10;
+          console.log('2nd', x);
+      }
+      console.log('3rd', x);
+      x += 1;
+      console.log('4th', x);
+  }
+
+  f();
+  // OUTPUT:
+  1st Undefined
+  2nd 10
+  3rd 10
+  4th 10
+-------------------------------------------------------------------------------
+Strict Mode
+- Strictmode is opt-in variant of JS that changes its semantics for the better
+- Invocation
+  - In a file, add 'use strict' at the top
+  - In the REPL, start it with '--use_strict'
+- What changes in Strict mode?
+  - Can be applied to functions (or a whole file)
+  - Turns some identifiers into keywords
+  - Makes it impossible to accidentally create global variables
+  - Function parameter names must be unique
+  - YOU'RE CODE WILL USE STRICT MODE
+-------------------------------------------------------------------------------
+Comparison
+- When an operator's operands are different types, one of them will be
+  converted to an equivalent value of the other operand's type
+  - This is type coercion
+- Equality ('==')
+  - Converts the operands to the same type, then does the comparison
+  - examples:
+    1 == 1 // true
+    '1' == 1 // true
+    1 == '1' // true
+    0 == false // false
+    0 == null // false
+    0 == undefined // false
+    null == undefined // true
+
+- Inequality (!=)
+  - (same stuff)
+
+- Strict Equality (===)
+  - Can only be true if both the type and value of the operands are the same
+  - examples:
+    3 === 3 // true
+    3 === '3' // false
+
+- Strict Inequality (!==)
+  - (same stuff again)
+-------------------------------------------------------------------------------
+Relational Operators
+- Operators are first converted to primitives, then to same type
+- Type conversion rules
+  - When comparing a string and number, the string is converted to a number
+    '0' < 3 // true
+    '0' > 3 // false
+    'a' < 3 // false
+    /a/ > 3 // false
+ - Booleans are converted to nubmers (0 / 1)
+ - If an object is compared with a number or string, JS attempts to 
+   convert it to a primitive using `valueOf()` and `toString()` methods
+   - if it can't, a run-time error is generated
+- Note: an object is converted to a primitive iff its comparand is a primitive
+  - if both operands are objects, they are compared as objects, so equality is 
+    determined by to what each points
+-------------------------------------------------------------------------------
+Null / Undefined
+- Two names that represent the absence of a value
+  - The difference is their application
+  - Undefined: system-level, unexpected, or error-like absence of a value
+  - Null: program-level, normal, expected absence of a value
+-------------------------------------------------------------------------------
+Control Flow
+- BLOCK
+{
+    var x = 0;
+}
+
+- if / else if / else
+if (cond1) {
+} else if (cond2) {
+else {
+}
+
+- Falsey values
+  false, undefined, null, 0, NaN, ''
+
+- Switch
+switch (exp) {
+    case label1:
+        statement;
+        break; // optional
+    case label2:
+        statement2;
+        break; // optional
+    default:
+}
