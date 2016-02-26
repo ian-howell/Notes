@@ -1,0 +1,136 @@
+Loops
+- for loops
+    var list = [5, 4, 3, 'hey']
+    for (var i = 0; i < list.length; i++) {
+        var e = list[i];
+        // use e
+    }
+
+    for (var i = 0, len = list.length; i < len; i++) {
+        // slightly faster
+    }
+
+    // DON'T DO THIS
+    for (var i = 0, item; item = list[i++];) {
+        
+    }
+
+- do... while
+    do {
+
+    } while();
+
+- while
+    while() {
+
+    }
+
+- for... in
+  - iterates over all enumerable, distinct properties of an object
+  var obj = {'a':1, 'b':5}
+  for (let pname in obj) {
+      var val = obj[pname];
+      // log val
+  }
+
+  var list = [5, 4, 3, 'hello'];
+  list.name = 'hey';
+  for (let i in list) {
+      console.log(i, list[i]);
+  }
+
+- for... of
+  - iterates over indices properly
+  let arr = [3, 5, 7];
+  arr.name = 'hey';
+  for (let i of arr) {
+      console.log(i)
+  }
+  // 3
+  // 5
+  // 7
+
+- for... each
+  let arr = [3, 5, 7];
+  arr.foo = 'hey';
+  arr.forEach(function(value){
+      console.log(value);
+  });
+  // 3
+  // 5
+  // 7
+===============================================================================
+Labels
+- Provides any type of statement with an identifier so it can be referred to
+  elsewhere
+  
+  // This is a label. It can be something other than markLoop, but that's
+  // what we're naming this one
+  markLoop:
+  while () {
+
+  }
+- break
+  - Used without a label, it terminates innermost enclosing statement
+  - Used with a label, it terminates statement specified by label
+
+  outer:
+  while(true) {
+      inner:
+      while (true) {
+          if (true) {
+              break outer;
+          }
+
+      }
+  }
+
+- continue
+  - Used without a label, it works like c++
+  - Used with a label, it skips to the next iteration of the labelled statement
+===============================================================================
+Functions
+- Basics
+  function multiply(x, y) {
+      var product = x * y;
+      return product
+  } // No semicolon!!
+
+  // This function obliterates the first multiply
+  function multiply(x, x, y){
+      console.log(x * y);
+  }
+  multiply(3, 5, 4); // 20
+  multiply(5, 2); // NaN (2 * undefined)
+===============================================================================
+Facts / Terms
+- Functions are first-class because they are treated as first-class objects
+- This means the following are possible:
+  - A function is an instance of the object type
+  - A function can have properties
+  - You can store a function in a variable
+  - You can pass functions int other functions as arguments
+  - You can return functions from functions
+- Method is a member function
+===============================================================================
+Arguments
+- Pass-by-reference
+  function paint_red(car) {
+      car.color = 'red';
+  }
+  var prius = {};
+  prius.color = 'green';
+  paint_red(prius);
+  prius.color; // red
+
+- Required arguments not provided are set to undefined unless they have a
+  default value
+- You can also access all arguments actually provided using `arguments`
+
+  function concat(sep=', '){
+      var result, i = 0, len = arguments.length;
+      for (i = 1; i < len; i++) {
+          result += arguments[i] + sep;
+      }
+      return result;
+  }
