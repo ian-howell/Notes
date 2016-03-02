@@ -145,3 +145,10 @@ myfuncs.js----------------------------------------------FILE
 modules.exports = function(){
     console.log('heyo');
 };
+
+* Quick convention
+require('name'); // Refers to require NPM packages
+require('./name'); // Refers to files in CWD
+-------------------------------------------------------------------------------
+module.exports vs exports
+- point to the same thing UNTIL you change what exports is 
