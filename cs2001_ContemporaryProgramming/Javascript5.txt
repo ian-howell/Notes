@@ -1,0 +1,84 @@
+Anonymous functions
+Alternative sytanx
+let x = function() { log('hey'); };
+x = () => {log('hey');};
+-------------------------------------------------------------------------------
+Function closures
+WRONG
+let sum = 0;
+function add(num) {
+    sum += num;
+    log(sum);
+}
+
+add(5); // 5
+add(4); // 9
+-------------------------------------------------------------------------------
+REWRITTEN
+STILL WRONG
+function add(num) {
+    let sum = 0;
+    sum += num;
+    log(sum);
+}
+
+add(5); // 5
+add(4); // 4
+-------------------------------------------------------------------------------
+STILL WRONG
+function add(num) {
+    let sum = 0;
+    function inc(x){
+        sum += x;
+        log(sum);
+    }
+    inc(num);
+    return sum;
+}
+
+add(5) // 5
+add(4) // 4
+-------------------------------------------------------------------------------
+Ok, the right way now
+let add = (function() {
+    let sum = 0;
+    return function(num){
+        sum += num;
+        log(sum);
+    }
+})();
+
+add(5); // 5
+add(4); // 9
+add(1); // 10
+
+Function Closure: Any function that has access to its parent's scope, even
+    after the parent has closed
+-------------------------------------------------------------------------------
+function multiply(a, b) {       // 1. enter main (push on)
+    return a * b;               // 2. declare function // 8. Compute
+}                               // 9. return (pop off)
+
+function square(n) {            // 3. declare function
+    return multiply(n, n);      // 7. push multiply onto the stack
+}                               // 10. return (pop off)
+
+function logSquare(n) {         // 4. declare function
+    let nsquared = square(n);   // 6. push square onto the stack
+    log(nsquared);              // 11. print
+}                               // 12. return (pop off)
+
+logSquare(4); // 16             // 5. push logsquare onto stack
+                                // 13. end of main (pop off)
+-------------------------------------------------------------------------------
+log('A');
+setTimeout(function() {
+    log('B');
+}, 3000);
+
+log('C');
+
+//A
+//C
+// wait for it...
+// B
