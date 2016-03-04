@@ -82,3 +82,45 @@ log('C');
 //C
 // wait for it...
 // B
+-------------------------------------------------------------------------------
+Object Oriented Programming in JS
+- JS does not have classes, perse
+- It is prototype-oriented
+- There is no class keyword
+- Instead, we build up a prototype object
+- we'll still call these "classes"
+  Note: they're not defined in the same manner as C++ or Python
+-------------------------------------------------------------------------------
+Constructors
+- JS uses functions as constructors for classes
+- Define a function to start working on your new type
+
+Ex
+var Frog = function(){
+};
+
+// jim is very boring
+var jim = new Frog();
+
+
+var Frog = function(name){
+    this.name = name;
+};
+
+var jim = new Frog('jim');
+log(jim.name); // 'jim'
+
+
+var Frog = function(name){
+    this.name = name;
+    this.x = 0;
+    this.y = 0;
+};
+
+Frog.prototype.hopNorth = function() {
+    this.y++;
+};
+
+var jim = new Frog('jim');
+jim.hopNorth();
+log(jim.y); // 1
