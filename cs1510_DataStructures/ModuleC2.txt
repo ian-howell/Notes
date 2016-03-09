@@ -1,0 +1,9 @@
+If T[1](x) is O(f(x)) and T[2](s) is O(g(x))
+then:
+    rule1: T[1](x) + T[2](x) i O(f(x) + g(x))
+    rule2: T[1](x) * T[2](x) is O(f(x) * g(x))
+    rule3: T[1](x) + T[2](x) is O(max(f(x), g(x)))
+
+    3n^4 is O(n^4)
+
+    

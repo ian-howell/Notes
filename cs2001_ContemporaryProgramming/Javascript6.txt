@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta>
+        <title></title>
+        <link>
+        <style></style>
+    </head>
+    <body>
+        <p>hey</p>
+        <script src="myJavaScript.js"></script>
+    </body>
+</html>

@@ -1,0 +1,47 @@
+Polymorphism
+
+Dynamic vs Static stype
+=Heterogeneous collection=
+
+class Animal
+{
+public:
+    voo speak()
+    {
+        cout < "...";
+    }
+}
+
+class Cow : public Animal
+{
+public:
+    void speak()
+    {
+        cout << "Moo!";
+    }
+}
+
+class Pig : public Animal
+{
+public:
+    void speak()
+    {
+        cout << "Oink!";
+    }
+}
+
+class Chicken : public Animal
+{
+public:
+    void speak()
+    {
+        cout << "Cluck!";
+    }
+}
+
+int main()
+{
+    Animal* farm[5];
+
+    return 0;
+}

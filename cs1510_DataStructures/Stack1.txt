@@ -1,0 +1,68 @@
+Stack
+A stack is a sequence
+<a0, a1, a2, a3, ... an>
+                     ^^ top of the stack
+
+Operations
+------------------------------------------------------------------------------
+top(s) - returns top of stack
+push(s, x) - the stack resulting from adding x to the top of s
+pop(s) - the stack resulting from removing the top of s
+
+Data Structure - ArrayStack
+template <typename T>
+class ArrayStack
+{
+private:
+    T* m_data;
+    int m_max;
+    int m_top;
+
+public:
+    const T& top() const
+    {
+        // Check if stack is empty
+        if (top == 0)
+            // RETURN ERROR
+
+        return m_data[m_top - 1];
+    }
+
+    void push(const T& x)
+    {
+        // Check if stack is full
+        if (m_top == m_max)
+        {
+            // Increase m_max
+            m_max = m_max * 2 + 1;
+
+            // Create a new array
+            T* tmp = new T[m_max];
+
+            // Copy everything into new array
+            for (int i = 0; i < m_top; i++)
+                tmp[i] = m_data[i];
+
+            // Delete old array
+            delete [m_data];
+
+            // Reassign tmp array to m_data
+            m_data = tmp;
+        }
+
+        // Insert x at the top
+        m_data[m_top] = x;
+
+        // Increment m_top
+        m_top++;
+    }
+
+    void pop()
+    {
+        // If the stack is not empty, pop of the top element
+        if (m_top > 0)
+            m_top--;
+
+        // This is where you would do resizing, if you were to do that
+    }
+}

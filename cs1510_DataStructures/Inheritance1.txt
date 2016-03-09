@@ -1,0 +1,40 @@
+C++ Inheritance
+======================================================================
+class A
+{
+    int x;
+public:
+    int y;
+    void foo();
+}
+
+class B
+{
+public:
+    int z;
+    void bar();
+}
+
+
+Objects of a derived class are compatible with the derived class
+
+int main()
+{
+    A alex;
+    B bob;
+
+    // OK!
+    zap(bob);
+
+    // Also ok! this is called slicing
+    alex = bob;
+
+    A* p;
+    p = &bob;
+
+}
+
+void zap(A a)
+{
+....
+}

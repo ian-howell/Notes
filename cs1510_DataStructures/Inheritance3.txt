@@ -1,0 +1,35 @@
+STUFF
+* Make all desctrutors virtual
+* Templates and Inheritance
+
+template <typename T>
+class A
+{
+    T data[5];
+}
+// This is a template NOT A CLASS
+A; // NOT A CLASS
+A<int> // this is ok
+A<string> // this is ok
+
+
+So to inherit,
+class B : public A<int>
+{
+// Now be is a derived class using A<int>
+// It can only be used as an A<int>
+}
+
+Better:
+template <typename T>
+class B : public A<T>
+{
+   // Now class B is a template class 
+}
+
+// This is also possible:
+template <typename T, typename U>
+class B : public A<T>
+{
+    U m_u;
+}

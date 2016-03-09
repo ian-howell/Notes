@@ -1,0 +1,30 @@
+C++ Inheritance Continued...
+===============================================================================
+Desctructors + Inheritance
+
+Desctructor of a derived class runs its code, then calls the destructor
+of the base class
+
+class A
+{
+    int* p;
+    ~A()
+    {
+        delete [] p;
+    }
+}
+
+class B : public A
+{
+    string* m;
+    ~B() 
+    { 
+        delete [] m;
+        // ~A() is called here
+    }
+}
+
+void foo()
+{
+    B ben;
+}
