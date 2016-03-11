@@ -1,0 +1,57 @@
+Stack as a LinkedList
+
+template <typename T>
+class LLStack
+{
+private:
+    T m_data;
+    LLStack* m_next;
+
+public:
+    const T& top() const
+    {
+        if (m_next != NULL)
+        {
+            return m_data;
+        }
+        else
+        {
+            return ERROR_OBJ;
+        }
+    }
+
+    void push (const T& x)
+    {
+        // Create a new temporary node
+        LLStack* tmp = new LLStack;
+
+        // Copy the top node into the new node
+        tmp->m_data = m_data;
+        tmp->m_next = m_next;
+
+        // Put new data into this
+        m_data = x;
+
+        // Point at the new node
+        m_next = tmp;
+    }
+
+    void pop()
+    {
+        // Check if the lsit is empty
+        if (m_next == NULL)
+        {
+            ERROR();
+        }
+        
+        // Create a node pointing to m_next
+        LLStack* tmp = m_next;
+
+        // Save the NEXT node's info into this
+        m_data = tmp->data;
+        m_next = tmp->m_next;
+
+        // Delete temporary node
+        delete tmp;
+    }
+}

@@ -1,0 +1,66 @@
+The ArrayQueue is constructed with a "circular" array
+- The queue is constrained by a first index and a last index
+
+Operations
+const T& front()
+{
+    if (m_first == m_last)
+        //Throw exception
+
+    return m_data[m_first];
+}
+
+void enqueue(const T& x)
+{
+    // Check that m_first will not be equal to m_first after enqueueing
+    if ((m_last + 1) % m_max != m_first)
+    {
+        // Create a new array twice the size of the old one
+        T* tmp = new T[m_max * 2];
+
+        // Unroll old array into new array
+        // NOTE: new m_first will be at tmp[0]
+        for (int k = 0; k < m_max; k++)
+        {
+            tmp[k] = m_data[(m_first + k) % m_max];
+        }
+
+        // Delete old array
+        delete m_data;
+
+        // Move temporary array into m_data
+        m_data = tmp;
+
+        // Change m_first to the front of the new array
+        m_first = 0;
+
+        // Change m_last to the final item in the array
+        m_last = m_max - 1;
+
+        // Modify m_max to reflect the size of the new array
+        m_max *= 2;
+    }
+
+    // Insert the data at the back of the queue
+    m_data[m_last] = x;
+
+    // Increment m_last
+    // NOTE: it wraps around
+    m_last = (m_last + 1) % m_max;
+
+    return;
+}
+
+void dequeue()
+{
+    // If it is not empty,
+    if (m_first != m_last)
+    {
+        m_first = (m_first + 1) % m_max;
+    }
+
+    // You might consider reducing the size of the queue in this space
+
+    // Don't care if it's empty, so just return
+    return;
+}

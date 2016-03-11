@@ -1,0 +1,158 @@
+Quick Facts
+- Coffeescript compiles to JavaScript
+- Syntax and Semantics are more user friendly
+- It's a little less ridiculous
+- It's still just JavaScript
+- The daocs for Coffeescript are available on a single very well written
+  web page: coffeescript.org
+-------------------------------------------------------------------------------
+Comments: #
+Functions
+- Are written as expressions
+- Unless you return explicitly, functions will return the value of the 
+  last line in the function body
+
+ex
+square = (x) -> x * x
+cube = (x) ->
+  return x * x * x
+
+cube = (x) ->
+  x * x * x # This gets returned since it's the last line
+
+print = (msg, prefix) ->
+  console.log(prefix + msg)
+
+print('a', 'b') # prints ba, returns undefined
+
+Default arguments
+printDebug(msg, prefix="DEBUG") ->
+  console.log(prefix + msg)
+
+Calling functions
+- parenthises are otional
+ex:
+square = (x) -> x * x
+y = square 5
+console.log(y) # 25
+
+log = console.log
+log square 5 # 25
+
+log square 5, 5 # 25
+log (square 5), 5 # 25 5
+hello = ->
+  log "hello"
+
+hello # does nothing
+hello() # hello
+do hello # hello
+-------------------------------------------------------------------------------
+Destructuring Assignment
+[a, b] = [1, 2]
+log a # 1
+log b # 2
+# You can also "unpack" values into properties
+# of an object (even nested objects)
+-------------------------------------------------------------------------------
+String Interpolation
+frog = {
+    name: 'jim',
+    weight: 10
+}
+log "#{frog.name} weighs #{frog.weight}" # jim weighs 10
+-------------------------------------------------------------------------------
+Variables and Scope
+- You do not have direct access to the var keyword, so it's not possible to
+  shadow an outer variable on purpose. You can only refer to it
+- Be careful not to reuse outer variables by accident
+- By default, the coffee compiler will put your code inside an IIFE
+
+# Coffeescript version
+outer = 1
+change = ->
+  inner = -1
+  outer = 10
+  log inner, outer
+inner = 20
+change()                # -1 10
+log inner, outer        # 20 10
+
+// Compiled Javascript
+var outer, change, inner;
+outer = 1;
+change = function() {
+    var inner; // dafuq
+    inner = -1;
+    outer = 10
+    return log(inner, outer);
+}
+inner = 20;
+change();
+log(inner, outer);
+-------------------------------------------------------------------------------
+Lists and Object Literals
+- Are about the same
+- Syntactic sugar for objects
+ex
+frog =
+  name: 'jim'
+  location:
+    x: 0
+    y: 0
+-------------------------------------------------------------------------------
+if/else-if/else
+if yourHappy and youKnowIt
+  do clapYourHands
+else-if isMonday
+  do lasagna
+else
+  do goHome
+
+unless isTuesday
+  do stuff
+# like
+if not isTuesday
+  do stuff
+
+x = if isTuesday then 5 else 10
+x == 10
+-------------------------------------------------------------------------------
+Loops
+# 'in' for arrays, 'of' for objects
+frogs = ['jim', 'dave']
+for f in frogs
+  log f
+
+frogWeights =
+  jim: 10
+  dave: 11
+for name, weight of frogWeights
+  log name, weight
+-------------------------------------------------------------------------------
+Comprehensions
+square = (x) -> x * x
+squares = (square v for v in [1, 2, 10]) # 1, 4, 100
+
+# sort of like enumerate() from python
+console.log i, v for v, i in ['a', 'b', 'c']
+# second number is index:
+# 0 a
+# 1 b
+# 2 c
+
+Strings = ("#{name} is #{weight}" for name, weight of frogWeights)
+# ['jim is 10', 'dave is 11']
+-------------------------------------------------------------------------------
+Aliases
+On the subject of '==':
+  == compiles to ===
+  != compiles to !==
+  is compiles to ===
+  isnt        to !==
+  true, yes, on compile to true
+-------------------------------------------------------------------------------
+Existential Operator
+? is a unary operator that returns true unless the operand is null or undefined
+ex: first line in program
+log thing? # false

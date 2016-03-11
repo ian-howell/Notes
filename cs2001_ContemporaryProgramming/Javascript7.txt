@@ -1,0 +1,33 @@
+Quick Review of Objects
+* Make an object literal
+let jim = {
+    name: 'jim';
+    x: 0,
+    y: 0,
+    hopNorth: function() {
+        this.y++;
+    }
+    print: function() {
+        // Prints out the frog
+    }
+};
+
+jim.hopNorth();
+jim.print(); // jim (0, 1)
+-------------------------------------------------------------------------------
+Building an Object Prototype
+let Frog = function(name) {
+    this.name = name;
+    this.x = 0;
+    this.y = 0;
+};
+Frog.prototype.hopNorth = function() {
+    this.y++;
+};
+Frog.prototype.print = function() {
+    // Print the frog
+};
+let jim = new Frog('jim');
+let dave = new Frog('dave');
+jim.hopNorth();
+jim.print(); // jim (0, 1)
