@@ -1,0 +1,73 @@
+foo(x)
+{
+  if (x is base case)
+  {
+    solve x
+  }
+  else
+  {
+    decompose x int x'
+    foo(x')
+    compose solution
+  }
+}
+
+Example
+count (array a, int a_size, x)
+{
+  if (a_size == 1)
+  {
+    if (a[0] == x)
+      return 1;
+    else
+      return 0;
+  }
+  else
+  {
+    int result = count(&a[1], a_size, x);
+    if (a[0] == x)
+      return result +1;
+    else
+      return result;
+  }
+}
+
+QuickSort!
+qsort(array a, int i, int j)
+{
+  // Array is either size 1 or 0, so it is already sorted
+  if (j <= i)
+    return;
+
+  left = i;
+  right = j;
+
+  // Pick middle element. It can be ANY element, but we're picking the middle
+  x = a[(left + right) / 2];
+
+  do
+  {
+    // move left and right toward x
+    while (a[left] < x)
+      left++;
+    while (a[right] > x)
+      right--;
+
+    // If they've crossed eachother, swap their values
+    if (left < right)
+    {
+      swap(a[left], a[right]);
+      left++;
+      right--;
+    }
+  } while (left < right);
+
+  // sort left side
+  if (j < left)
+    qsort(i, left);
+  
+  // sort right side
+  if (right < i)
+    qsort(right, j);
+}
+
