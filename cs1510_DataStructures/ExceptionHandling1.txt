@@ -1,0 +1,40 @@
+New keywords:
+throw - takes a variable
+try
+catch
+
+Mechanism to execture error handling
+
+Example:
+void foo()
+{
+    x = y / z;
+}
+
+* This could cause a divide by zero, and that's pretty friggin bad
+
+This fixes it, but it's kinda gross - We would prefer for the exceptional
+code to be somewhere else, rather than in the middle of the regular code
+void foo()
+{
+    if (z != 0)
+        x = y / z;
+    else                    // This is the exceptional code
+        // Error            // This is the exceptional code
+}
+
+This uses exception handling
+void foo()
+{
+    try
+    {
+        if (z == 0)
+            throw z;
+            // This is aborted
+    }
+    catch (int &z) 
+    {
+        cout << "ERROR: " << z << " cannot be 0\n" << endl;
+        z = 1;
+    }
+}

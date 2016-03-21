@@ -1,0 +1,94 @@
+log = console.log
+ranges
+x = [0..10] # [0, 10] inclusive
+# 2 dots implies inclusive
+# 3 dots implies exclusive
+x = [0...10] # [0, 10) exclusive
+-------------------------------------------------------------------------------
+slicing
+# ranges can be used for slicing
+nums = [0..10]
+log nums[3..6] # [3, 4, 5, 6]
+nums[2..5] = ['a', 'b', 'c', 'd']
+log nums # [0, 1, 'b', 'c', 'd', 6, 7, 8, 9, 10]
+# negative indexing!
+-------------------------------------------------------------------------------
+aliases
+   from                    to
+   ==                      ===
+   !=                      !==
+   is                      ===
+   isnt                    !==
+   not                     !
+   and                     &&
+   or                      ||
+   yes                     true
+   on                      true
+   no                      false
+   off                     false
+
+ex if x isnt 10            if (x !=== 10)
+-------------------------------------------------------------------------------
+existential operator
+x = null
+if x?
+  log "hello"
+else
+  log "goodbye"
+
+existential operator returns true unless the operand is null or undefined
+-------------------------------------------------------------------------------
+classes
+class Frog
+  constructor:(name) ->
+    this.name = name
+    @x = 0     # `@` is short for `this.`
+    @y = 0
+  hopNorth:() ->
+    @y++
+  print:() ->
+    log "#{@name} (#{@x}, #{@y})"
+    
+jim = new Frog 'jim'
+do jim.hopNorth
+do jim.print # jim (0, 1)
+
+# cool constructor parameter thing:
+class Frog
+  constructor:(@name) ->
+    @x = 0
+    @y = 0
+
+# object literal
+jim = 
+  name: 'jim'
+  x: 0
+  y: 0
+  hopNorth:() ->
+    this.y++
+-------------------------------------------------------------------------------
+=> (fat arrow) changes the meaning of `this` and @
+-------------------------------------------------------------------------------
+coffeescript has...
+- a few more arithmetic operators (**, //, %%)
+- multiline strings
+- block comments
+- splats (variable number of arguments [think starpower])
+- slicing/splicing
+------------------------------------------------------------------------------- 
+AND NOW
+the rest of javascript
+- ajax
+- promises
+- client-side frameworks
+  - angular
+  - react
+  - aurelia
+- server-side frameworks (node)
+  - express
+  - meteor
+- useful libraries
+  - jquery
+  - d3
+- babel - compiles ES6 js into ES5
+- typescript - microsoft's coffeescript

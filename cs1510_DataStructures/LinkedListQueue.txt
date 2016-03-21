@@ -1,0 +1,19 @@
+const T& front()
+{
+    if (m_next != NULL)
+    {
+        return m_next->m_next->m_data;
+    }
+    // Throw an exception
+}
+
+void enqueue(const T& x)
+{
+
+}
+
+void dequeue()
+{
+
+}
+
