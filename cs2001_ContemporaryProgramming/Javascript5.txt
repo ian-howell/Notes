@@ -1,5 +1,5 @@
 Anonymous functions
-Alternative sytanx
+Alternative syntax
 let x = function() { log('hey'); };
 x = () => {log('hey');};
 -------------------------------------------------------------------------------

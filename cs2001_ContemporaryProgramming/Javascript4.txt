@@ -98,7 +98,7 @@ Ex2
 function get_score(){
     let name = 'Leopard', points = 50;
     function format_score(){
-        return name + ': ' ++ points;
+        return name + ': ' + points;
     }
     return format_score();
 }
