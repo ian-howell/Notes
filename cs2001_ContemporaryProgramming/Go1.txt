@@ -1,0 +1,183 @@
+Introduction to Go
+===============================================================================
+A quick history
+- started in 2009
+- Robert Griesemer
+  - V8 JS Engine
+- Rob Pike
+  - Unix
+- Ken Thompson
+  - B
+  - Unix
+
+Go is used by google
+Go is open source
+-------------------------------------------------------------------------------
+Writing Go
+- Go is picky
+- If it's worth a warning, it's worth an error
+  - unused variables
+  - unused imports
+  - some "style violations"
+-------------------------------------------------------------------------------
+Idioms in English
+- examples
+  - I'm just pulling your leg
+  - This isn't rocket science
+  - That will cost an arm and a leg
+-------------------------------------------------------------------------------
+Idioms in Go
+- Common design patterns that are recognizable to other Go devs
+- Example:
+  - Getters don't need to start with `Get`
+  - Don't insert superfluous semicolons
+  - Use a switch statment over a long if-else chain
+  - The "comma ok" idiom
+- Idiomatic Go code uses common patterns to solve problems
+-------------------------------------------------------------------------------
+Style in Go
+- There's basically no flexibility
+- A couple highlights
+  - Tabs NOT spaces
+  - something else...
+-------------------------------------------------------------------------------
+Formatting in Go
+- use go fmt to format your code
+-------------------------------------------------------------------------------
+Why do people like it?
+- Easy to read/write
+- garbage collected
+- concurrency programming features
+-------------------------------------------------------------------------------
+What is it used for?
+- General purpose
+- Network programmin
+- Concurrent programming
+-------------------------------------------------------------------------------
+Things to know!
+- We are using Go version 1.6
+  - 1.2.1 is on the lab machines, but that's "obsolete"
+  - Try running code at `https://play.golang.org/`
+- Assignment code must be formatted with go fmt
+  - Good style is important
+-------------------------------------------------------------------------------
+Quick facts about Go
+*quick note: if you're going to google for go related things, consider
+             searching for `golang` rather than just `go`
+- Go is compiled
+  - Run smallish programs with `go run`
+  - Build large projects with `go build` and/or `go install`
+- The go command has a number of helper tools
+  - go fmt: formats code
+  - go doc: access to documentation
+- Statically typed (thank god)
+- Comments are C-like
+- fmt.Println() is used to write to stdout
+  - don't forget to import fmt if you plan to use Println()
+- Declaring and intializing variables
+  - Explicit Types
+    - var x int
+    - var a, b, c int
+    - var d, e, f int = 1, 2, 3
+  - Implicit Types
+    - x := 10       // int
+    - a, b, c := 12, true, "frog"     // this also works
+
+    - var x int
+      //x := 10     // makes the compiler mad
+      x = 10        // this is ok
+  - Don't insert semicolons at the end of statements!
+    - x := 10;      // No
+  - Identifiers are case sensitive
+-------------------------------------------------------------------------------
+Builtin Types
+- Boolean type
+  - var b bool
+  - Predeclared constants
+    - true
+    - false
+- Numeric types
+  - unsigned integers
+    - uint, uint8, uint16, uint32, uint64
+  - signed integers
+    - int, int8, int16, int32, int64
+  - int and uint are automatic integer types
+  - floating point (IEEE-754)
+    - float32, float64
+  - complex numbers (floating point real part, floating part imaginary part)
+    - complex64, complex128
+  - byte
+    - var x byte
+    - alias for uint8
+  - rune (unicode code point)
+    - alias for uint32
+    - var r rune
+    - x := 'r'
+- String (it's handy-dandy)
+  - var s string
+  - A (possibly empty) sequence of bytes
+  - It is immutable
+  - Obtain its length with `len()`
+- Arrays
+  - [<num elements>]<type>
+  - <num elements> must be constant
+  - 0-indexed
+  - length is found with `len()`
+  - All elements of the array are of type <type>
+  - Example
+- Slices
+  - []<type>
+  - "... a descriptor for a contiguous segment of an underlying array..."
+  - Backed by an array with some capacity
+  - 0-indexed
+  - length is found with `len()`
+  - capacity is found with `cap()`
+  - var a [100]int
+  - s := a[0:3]
+  - len(s) // 3
+  - cap(s) // 100
+- nil
+  - nil is like None/null/NULL/etc...
+-------------------------------------------------------------------------------
+EXAMPLES
+i := 42          // int
+f := 12.456      // float64
+g := 10+5i       // complex128
+
+var myArray [5]int
+myArray[1] = 6
+fmt.Println(myArray) // [0 6 0 0 0]
+
+s := []int{1, 2, 3, 4, 5}
+fmt.Println(s) // [1 2 3 4 5]
+
+-------------------------------------------------------------------------------
+Foreshadowing
+- Variable-related
+  - POINTERS EXIST!
+  - Memory allocation
+- Other Types
+  - Structs
+  - Maps (like dicts)
+  - Channels
+-------------------------------------------------------------------------------
+Variables, Types, etc
+- Uninitialized values are given a `zero` value by default
+  - numbers: 0
+  - booleans: false
+  - string: ""
+- The compiler will enforce the usage of types
+  x := 10 // int
+  x = 12 // this is ok
+  x = "frog" // No
+  x = 12.5 // No
+  // THE COMPILER WILL NOT IMPLICITLY CONVERT TYPES
+  i := 42
+  f := float64(i)
+  u := uint(f)
+- The blank identifier `_` is used to ignore unwanted return values, etc
+  - Example
+  x, y = fun()
+  // say we only want the first return value from the function, we would use
+  x, _ = fun()
+-------------------------------------------------------------------------------
