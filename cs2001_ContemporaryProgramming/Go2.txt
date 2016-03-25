@@ -1,0 +1,124 @@
+Facts
+-------------------------------------------------------------------------------
+- The default size of a sloating point constant is 64 bits
+- Size of int and uint are implementation specific.
+- Version of Go > 1.1 uses 64 bits
+- Previous version used 32 bits
+-------------------------------------------------------------------------------
+Variable Declarations
+- Because unused variables are compiler errors, it is common (idiomatic) to
+  declare / initialize them close to where they will be used
+- Don't bother trying to declare all your variables at the top of a function,
+  unless you have a good reason to
+-------------------------------------------------------------------------------
+Constants
+
+const A = "frog"
+const B = 10
+const (
+  x = 10
+  y = "frog"
+)
+-------------------------------------------------------------------------------
+Pointers
+- A pointer stores the address of a variable of a given type. It "points to"
+  some value
+  - var x *int    // declares a pointer named x that points to an int
+  - var y *[3]int // declares a pointer named y that points to an int array
+- The zero-value for a pointer is nil
+- Go DOES NOT support pointer arithmetic
+
+var x *int
+fmt.Println(x)  // nil
+*x = 10
+fmt.Println(x)  // address of x
+fmt.Println(*x) // 10
+
+package main
+import "fmt"
+func main() {
+  x := [3]int{1, 2, 3]
+  y := x          // This is actually a deep copy
+  fmt.Println(x, y) // [1 2 3] [1 2 3]
+  y[1] = 5
+  fmt.Println(x, y) // [1 2 3] [1 5 3]
+}
+
+package main
+import "fmt"
+func main() {
+  x := &[3]int{1, 2, 3} // Array literal
+  y := x
+  y[1] = 5
+  fmt.Println(x, y)  // &[1 5 3] &[1 5 3] 
+	fmt.Println(*x, *y)// [1 5 3] [1 5 3] 
+}
+-------------------------------------------------------------------------------
+Allocating Memory
+- How do I know if my variables live in the heap or on the stack?
+  - It doesn't matter! No Rules!
+  - Go has a garbage collector, so you don't have to clean up after yourself
+- Builtin function new(T)
+  - allocate storage for a variable of type T at runtime
+  - returns a pointer (*T) that points to the allocated variable
+  - That pointed to value is always zeroed
+- Builtin function make(T, args)
+  - Creates slices, maps, and channels
+  - returns an initialized value of type T (not *T)
+    - slices, maps, and channels require initialization
+    - the zero-value usually doesn't cut it
+
+func main() {
+  //new an array
+  x := new([3]int)        // All zeros
+  y := x                  // points to the same thing as x
+  y[1] = 5
+  fmt.Println(x, y)       // &[0 5 0] &[0 5 0]
+}
+
+func main() {
+  //make a slice
+  x := make([]int, 3, 10)    // slice, length, backing array
+  y = x
+  y[1] = 5
+  fmt.Println(x, y)          // [0 5 0] [0 5 0]
+}
+-------------------------------------------------------------------------------
+A Bunch More About Slices
+- The indexes must be non-negative integers
+- If you attempt to access index X of array A and X is outside of
+  the range [0, len(A)), then there will be a runtime panic
+- Creating Slices
+  - Literal Slice
+    s := []int{1, 2, 3, 4, 5, 6}
+    fmt.Println(s[0]) // 1
+    fmt.Println(s[1:3]) // [2 3]       <- oh look, another slice
+    fmt.Println(len(s)) // 6
+    fmt.Println(cap(s)) // 6
+  - Make a Slice
+    func main() {
+      s := make([]int, 6, 10)
+      fmt.Println(s[1]) // 0
+      fmt.Println(s[1:3]) // [0 0]
+      fmt.Println(len(s)) // 6
+      fmt.Println(cap(s)) // 10
+    }
+- Slicing Arrays/Slices
+  a := [8]int{0, 1, 2, 3, 4, 5, 6, 7}
+  s := a[2:len(a)-2] // [2 3 4 5]
+  fmt.Println(len(s)) // 4
+  fmt.Println(cap(s)) // 6
+  fmt.Println(s[1:3]) // [3 4]
+  fmt.Println(s[4]) // runtime panic
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
