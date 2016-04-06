@@ -1,0 +1,219 @@
+Operators
+=========
++         sum
+-         difference
+*         product
+/         quotient
+%         remainder
+&         bitwise AND
+|         bitwise OR
+^         bitwise XOR
+<<        shift left
+>>        shift right
+++        increment
+--        decrement
+
+bitshift example
+x := 1                00000001
+x = (x << 1)          00000010
+-------------------------------------------------------------------------------
+A bit about UTF-8
+-----------------
+- Unicode is a collection of code points including letters, numbers, symbols,
+  emoji, accents, etc
+- Any code point can be stored in Go using a rune (int32)
+- Unicode can be encoded in several different ways
+  - UTF-32 - Each code point gets its own 32-bit unit
+    - Fixed width
+    - Easily indexable
+    - []rune  (list of bytes)
+  - UTF-16 - Each code point gets one or two 16-bit units
+    - Variable width
+    - []uint16
+  - UTF-8 - Each code point gets between 1 and 4 8-bit units
+    - Variable width
+    - []unit8        or     []byte
+    - First 128 characters of the ASCII table map directly to UTF-8
+      - ASCII 'o' -> 111
+      - UTF-8 'o' -> 111
+-------------------------------------------------------------------------------
+Things to keep in mind
+----------------------
+- Strings in Go are just []byte
+  - Go does not guarantee that the content of a string is UTF-8
+- Go source code IS UTF-8
+  - That means that string literals will be UTF-8 encoded
+-------------------------------------------------------------------------------
+Examples
+--------
+r := 'o' // rune
+s := string(r) // "o"
+b := []byte(s) // [111]
+fmt.Println(len(s)) // 1
+
+r = 'o' // rune (IMAGINE AN UMLAUT ON THE o)
+s = string(r) // 'o'
+b = []byte(s) // [195 152] U+0F6
+fmt.Println(len(s)) // 2
+fmt.Println(utf8.RuneCountInString(s)) // 1
+r = 'smileyface' // Literally a smileyface
+fmt.Println(len(string(r))) // 4
+-------------------------------------------------------------------------------
+if / else
+---------
+  if x < y {
+    fmt.Println("Less")
+  }
+
+  if a == b {
+    fmt.Println("Equal")
+  } else {
+    fmt.Println("Not Equal")
+  }
+
+  if myString == "frog" {
+    // do something
+  } else if myString == "dog" {
+    // do something else
+  }
+
+  if val := math.Floor(other); val > 10 {
+    fmt.Println(val, "greater than 10")
+  }
+  // val is no longer accessable
+-------------------------------------------------------------------------------
+switch
+------
+  - Much more flexible than C++
+  - Break automatically instead of falling through automatically
+    - Fall through with `fallthrough`
+  - Cases are evaluated in order from top to bottom until a match is found or
+    you run out of options
+  - Switching on no condition is the same as switching on true
+
+switch animal {
+case "frog":
+  fmt.Println("Ribbit")
+case "horse":
+  fmt.Println("Neigh")
+  fallthrough
+case "dog":
+  fmt.Println("Bark")
+default:
+  fmt.Println("-.-")
+}
+// animal == "frog"
+Ribbit
+// animal == "horse"
+Neigh
+Bark
+// animal == ""
+-.-
+
+switch a := getAnimal(); a {
+  // switch body
+}
+
+func f() int {
+  fmt.Println("f!")
+  return 1
+}
+
+func main() {
+  i := 0
+  switch i {
+  case 0:
+    fmt.Println("Case 0")
+  case f():
+    fmt.Println("Case f()")
+  }
+}
+
+switch {
+case x > y:
+  fmt.Println("Greater")
+case x < y:
+  fmt.Println("Less")
+default:
+  fmt.Println("Equal")
+}
+-------------------------------------------------------------------------------
+Looping
+-------
+- There's only for
+
+// counting
+acc := 1
+for i := 1; i < 10; i++ {
+  acc *= i
+}
+
+// The first and third statements are optional
+var sum, i int // 0, 0
+for ; i < 10; i++ {
+  sum += i
+}
+
+// Sentinel loop
+for x < 10 {
+  // Body - must change 10
+}
+
+KeepGoing := true
+for KeepGoing {
+  //body
+}
+
+// Infinitely loop
+for {
+  // keeps going
+}
+
+// Range
+animals := [3]string{"frog", "giraffe", "submarine"}
+for index, element := range animals {
+  fmt.Println(index, element)
+}
+
+// also...
+for i := range animals {
+  fmt.Println(i)
+}
+// 0
+// 1
+// 2
+
+// and also...
+for _, elt := range animals {
+  fmt.Println(elt)
+}
+// frog
+// giraffe
+// submarine
+-------------------------------------------------------------------------------
+Reading Files
+-------------
+- There are a bunch of ways to do this
+- The best choice varies depending on the appliacation
+
+// Complete program!
+package main
+
+import (
+  "fmt"
+  "io/ioutil"
+  "os"
+)
+
+func main() {
+  // ReadFile returns 2 things, the contents of the file as []byte
+  // and an error if something went wrong
+  contents, err := ioutil.ReadFile("test.txt")
+
+  if err != nil {
+    fmt.Println(err)
+    os.Exit(1)
+  }
+
+  fmt.Println(string(contents))
+}
