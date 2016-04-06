@@ -20,3 +20,32 @@ try (ith step)
   // there are no more choices
   return failure
 end
+
+Path finding
+------------
+
+Get to the cake!
+     *   C 
+   * * *   
+   *       
+         * 
+ s   *     
+
+try(x, y)
+  choices = N, NE, E, SE, S, SW, W, NW
+  do
+    select choice d
+    x', y': x, y after d
+    if (x', y') is not a boulder AND is in the map
+      record choice
+      if the cake is at x', y'
+        return success
+      else
+        solve = try(x', y')
+        if solve
+          return success
+        else
+          remove choice record
+  while choices.length > 0
+  return failure
+done
