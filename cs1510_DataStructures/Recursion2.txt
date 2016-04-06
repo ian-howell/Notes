@@ -1,0 +1,22 @@
+Recursive Backtracking
+----------------------
+- Decompose into a series of trial and error tasks
+
+try (ith step)
+  initialize choices
+  do
+    select choice
+    if choice is valid
+      record choice
+      if solution is complete
+        return success
+      else
+        try (i+1)th step
+        if successful
+          return success
+        else
+          Remove choice record
+  while more chocies are available
+  // there are no more choices
+  return failure
+end
