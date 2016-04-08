@@ -1,0 +1,104 @@
+Functions
+===============================================================================
+Basic Syntax
+------------
+package main
+
+import "fmt"
+
+func add(x, y int) int {
+  return x + y
+}
+func main() {
+  fmt.Println(add(10, 5)) // outputs 15
+}
+-------------------------------------------------------------------------------
+Multiple Results
+----------------
+func swap (x, y string) (string, string) {
+  return y, x
+}
+
+func main() {
+  a, b := swap("hey", "yo")
+
+  fmt.Println(a, b)
+}
+-------------------------------------------------------------------------------
+Named Results
+-------------
+func split (sum int) (x, y int) {
+  x = sum *= 4/9
+  y = sum - x
+  return      // "Naked return
+}
+// Only use for short functions
+-------------------------------------------------------------------------------
+Defer
+-----
+- a "defer" statement defers the execution of a function until the surrounding
+  function has returned
+Example:
+func main() {
+	defer fmt.Println("yo")
+	fmt.Println("hey")     // prints "hey (newline) yo"
+}
+
+BETTER EXAMPLE
+package main
+
+import (
+	"io/ioutil"
+	"log"
+	"os"
+)
+
+func main() {
+  // TempFile takes (string) directory name, (string) file name prefix
+	tmpfile, err := ioutil.TempFile("", "example")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer os.Remove(tmpfile.Name())
+
+	// Do work on tempFile
+
+}
+-------------------------------------------------------------------------------
+Stacking Defers
+---------------
+- defers use a stack, so last in, first out
+
+EXAMPLE
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	fmt.Println("counting")
+	for i := 0; i < 10; i++ {
+		defer fmt.Println(i)
+	}
+	fmt.Println("done")
+}
+
+OUTPUT
+counting
+done
+9
+8
+7
+6
+5
+4
+3
+2
+1
+0
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
