@@ -1,0 +1,31 @@
+Trees
+-----
+- A collection of elements with a hierarchical relationship over the elements
+  - The empty collection is a tree - "empty tree"
+  - A single element (node) is a tree
+  - if n is a node, and T1, T2, ..., Tk are trees, then the n related to T1,
+    T2, ..., Tk is a tree
+  - n is the `root` of the tree
+    - Note: every tree has a root
+  - T1 - Tk are called `subtrees` of n
+    - The root of each subtree of node n is called a `child` of n
+    - n is called the parent of the roots of each its subtrees
+    - Siblings are elements with the same parent
+    - Note: Every node in a tree has a parent except the root
+  - Leaves are nodes with no subtrees
+  - The degree of a node n is the number of children of n
+  - The degree of a tree T is the largest degree of any given node in T
+  - A path in a tree is sequence of nodes <n0, n1, ..., nk> such that n(i+1) is
+    the parent of ni for 0 <= i < k
+    - Note: paths can only run UP the tree
+  - The depth of a node n is the number of elements in the path from n to the
+    root
+  - The height of a tree is the depth of the root
+===============================================================================
+Uses
+----
+- Filesystems
+- Expressions
+  - such as 3 - (8 * 7)
+- Game trees
+  - Think of how you would create a tic-tac-toe game
