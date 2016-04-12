@@ -12,7 +12,7 @@ func add(x, y int) int {
 func main() {
   fmt.Println(add(10, 5)) // outputs 15
 }
--------------------------------------------------------------------------------
+===============================================================================
 Multiple Results
 ----------------
 func swap (x, y string) (string, string) {
@@ -24,7 +24,7 @@ func main() {
 
   fmt.Println(a, b)
 }
--------------------------------------------------------------------------------
+===============================================================================
 Named Results
 -------------
 func split (sum int) (x, y int) {
@@ -33,7 +33,7 @@ func split (sum int) (x, y int) {
   return      // "Naked return
 }
 // Only use for short functions
--------------------------------------------------------------------------------
+===============================================================================
 Defer
 -----
 - a "defer" statement defers the execution of a function until the surrounding
@@ -64,7 +64,7 @@ func main() {
 	// Do work on tempFile
 
 }
--------------------------------------------------------------------------------
+===============================================================================
 Stacking Defers
 ---------------
 - defers use a stack, so last in, first out
@@ -97,8 +97,103 @@ done
 2
 1
 0
--------------------------------------------------------------------------------
--------------------------------------------------------------------------------
--------------------------------------------------------------------------------
--------------------------------------------------------------------------------
--------------------------------------------------------------------------------
+===============================================================================
+Appending to Slices
+-------------------
+func append(s []Type, emes ...Type) []Type
+- built-in
+- Appends elements to the end of a slice
+- If the slice (s) has sufficient capacity, it is resliced to accomodate new
+  elements
+- If there isn't enough capacity, a new underlying array is allocated
+- append returns the updated slice
+- It is necessary to store (in a variable or something) the result from a call
+  to append
+
+EXAMPLE
+func main() {
+	s := []int{1, 2}
+	t := append(s, 3)
+	s[0] = 5
+	fmt.Println(cap(t), t)
+	fmt.Println(s)
+}
+
+output
+4 [1 2 3]
+[5 2]
+
+ANOTHER EXAMPLE
+func main() {
+	x := make([]int, 2, 10)
+	x[0], x[1] = 1, 2 // [1 2]
+	y := append(x, 3) // [1 2 3]
+
+	fmt.Println("x:", cap(x), x)
+	fmt.Println("y:", cap(y), y)
+	fmt.Println(x[:3], y)
+}
+
+output
+x: 10 [1 2]
+y: 10 [1 2 3]
+[1 2 3] [1 2 3]
+===============================================================================
+Maps
+----
+- Map keys to value
+- Python dict-ish
+- Zero value of a map is `nil`
+- You cannot set/get keys with a nil map
+- len() tells you the number of keys
+- cap() doesn't work
+
+basic examples
+func main() {
+	var sounds map[string]string
+	sounds = make(map[string]string)
+	sounds["frog"] = "ribbit"
+	fmt.Println(sounds["frog"]) // "ribbit"
+
+	// easier to make
+	weights := make(map[string]float64)
+	fmt.Println(sounds) // map[frog:ribbit]
+	fmt.Println(weights) // map[]
+}
+===============================================================================
+Map Literals
+------------
+func main() {
+	counts := map[string]int{"frog": 2, "bear": 1}
+	fnames := map[string][]string{
+		"frog": []string{"jim", "frank"},
+		"bear": []string{"erin"},
+	}
+	// Another way
+	lnames := map[string][]string{
+		"frog": {"smith", "jones"},
+		"bear": {"peterson"},
+	}
+	fmt.Println(fnames)
+	fmt.Println(lnames)
+	fmt.Println(counts)
+}
+output
+map[frog:[jim frank] bear:[erin]]
+map[frog:[smith jones] bear:[peterson]]
+map[frog:2 bear:1]
+
+// Getting by key
+x := counts["frog"] // 2
+y := counts["dinosaur"] // 0
+counts["dog"] = 10 // map[frog:2 bear:1 dog:10]
+delete(counts, "frog") // map[bear:1 dog:10]
+===============================================================================
+Comma-OK pattern
+----------------
+if c, ok := counts["cat"]; ok {
+  fmt.Println(c)
+} else {
+  fmt.Println("There is no key cat")
+}
+===============================================================================

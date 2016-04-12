@@ -1,0 +1,40 @@
+Tree Traversals
+---------------
+Pre-order(tree t)
+  process(root of t)
+  for eacn subtree t' of t
+    Pre-order(t')
+
+Post-order(tree t)
+  for each subtree t' of t
+    Post-order(t')
+  process(root of t)
+
+Pre-Order(tree t)
+  stack of nodes s
+  push the root of t
+  while stack is not empty
+    x = top of stack
+    pop stack
+    process x
+    for each child y of x
+      push y
+
+Level-Order(tree t)
+  queue of nodes Q
+  enqueue the root of t
+  while queue is not empty
+    x = front of queue
+    dequeue queue
+    process x
+    for each child y of x
+      enqueue y
+
+Binary Search Tree
+- it's degree 2, where the child i <= child i+1
+- Search property
+  - nodes are comparable
+  - for every node x
+    - x is greater than any node in it's left subtree
+    - x is lesser than any node in it's right subtree
+- EVERY NODE MUST BE DIFFERENT!!!!
