@@ -1,0 +1,124 @@
+Trees (again)
+-------------
+Operations
+- getMin(T)
+  - Extreme left
+- getMax(T)
+  - Extreme right
+- find(x, T)
+  - Returns true if the node x is somewhere in the tree T
+- insert(x, T)
+  - Inserts x in it's proper place in the tree T
+===============================================================================
+Implementation
+--------------
+Data structure: BSTreeNode
+- Each node has m_data, m_right, and m_left
+
+template <typename T>
+class BSTreeNode
+{
+public:
+  T m_data;
+  BSTreeNode* m_left;
+  BSTreeNode* m_right;
+}
+
+// RECURSIVE
+template <typename T>
+const T& getMin(BSTreeNode* t)
+{
+  // Empty tree
+  if (t == NULL)
+  {
+    // Error!
+  }
+
+  else
+  {
+    // If there is nothing to the left of t
+    if (t->m_left == null)
+    {
+      return t->m_data;
+    }
+
+    // Call the function again with t's left child
+    return getMin(t->m_left);
+  }
+}
+
+// ITERATIVE
+template <typename T>
+const T& getMax(BSTreeNode* t)
+{
+  BSTreeNode* skiier = t;
+  if (skiier == NULL)
+  {
+    // Error!
+  }
+  else
+  {
+    while (skiier->m_right != NULL)
+    {
+      skiier = skiier->m_right;
+    }
+    return skiier->m_data;
+  }
+}
+
+// RECURSIVE
+template <typename T>
+bool find(BSTreeNode* t, const T& x)
+{
+  // If the tree is empty
+  if (t == NULL)
+  {
+    return false;
+  }
+
+  // Compare to the root
+  if (x < t->m_data)
+  {
+    return find(t->m_left, x);
+  }
+  else if (x > t->m_data)
+  {
+    return find(t->m_right, x);
+  }
+
+  // Otherwise it must be in the tree
+  return true;
+}
+
+// RECURSIVE
+template <typename T>
+void insert(BSTreeNode* &t, const T& x)
+{
+  // Empty tree
+  if (t == NULL)
+  {
+    // Create a new node at t
+    t = new BSTreeNode;
+    t->m_data = x;
+    t->m_left = NULL;
+    t->m_right = NULL;
+  }
+  else
+  {
+    // Compare to the root
+    if (x < t->m_data)
+    {
+      // insert to the left
+      insert(t->m_left, x);
+    }
+    else if (x > t->m_data)
+    {
+      // insert to the right
+      insert(t->m_right, x);
+    }
+    else // x == t->m_data
+    {
+      return;
+    }
+  }
+}
