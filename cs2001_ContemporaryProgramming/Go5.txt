@@ -1,0 +1,154 @@
+Function Values
+---------------
+- Functions can also be values
+- They can be passed around just like other values
+- Function values may be used as function arguments and return values
+
+example
+package main
+
+import (
+	"fmt"
+	"math"
+)
+
+func compute(fn func(float64, float64) float64) float64 {
+	return fn(3, 4)
+}
+
+func main() {
+	hypot := func(x, y float64) float64 {
+		return math.Sqrt(x*x + y*y)
+	}
+
+	fmt.Println(hypot(5, 12))
+	fmt.Println(compute(hypot))
+	fmt.Println(compute(math.Pow))
+}
+===============================================================================
+Function Closures
+-----------------
+- Go functions can also be closures, ie, a function value that references
+  something outside of its body so we can think that a closure is "bound" to
+  those variables outside its body
+
+example
+package main
+
+import (
+	"fmt"
+)
+
+func adder() func(int) int {
+	sum := 0
+	return func(x int) int {
+		sum += x
+		return sum
+	}
+}
+
+func main() {
+	pos := adder()
+	for i := 0; i < 10; i++ {
+		fmt.Println(pos(i))
+	}
+}
+
+another example
+package main
+
+import (
+	"fmt"
+)
+
+func fibonacci() func() int {
+	s0, s1, i := 0, 1, 0
+	return func() int {
+		if i == 0 {
+			i++
+			return s0
+		} else if i == 1 {
+			i++
+			return s1
+		}
+		s0, s1 = s1, (s0 + s1)
+		return s1
+	}
+}
+
+func main() {
+	f := fibonacci()
+	for i := 0; i < 10; i++ {
+		fmt.Println(f())
+	}
+}
+===============================================================================
+Structs
+-------
+- A collection of fields
+
+example
+package main
+
+import (
+	"fmt"
+)
+
+type Pony struct {
+	Name           string
+	Height, Weight float64
+	FavoriteFoods  []string
+}
+
+func main() {
+	//var p Pony
+	// A struct literal
+	dave := Pony{"dave", 3.2, 100, []string{"rocks"}}
+	fmt.Println(dave) // {dave 3.2 100 [rocks]}
+
+	alice := Pony{Name: "alice", Weight: 100, Height: 3.2,
+		FavoriteFoods: []string{"kale"}}
+	fmt.Println(alice) // {alice 3.2 100 [kale]}
+	carol := Pony{Name: "carol"}
+	fmt.Println(carol) // {carol 0 0 []}
+	dave.Name = "Dave"
+	fmt.Println(dave.Name) // Dave
+
+	// Pointers
+	karl := new(Pony)        // *Pony
+	karl.Name = "karl"       // (*karl).name = "karl"
+	fmt.Println(karl.Height) // 0
+	fmt.Print(karl)          // &{karl 0 0 []}
+}
+===============================================================================
+Exporting
+---------
+- Items (functions, types, structs, struct fields, etc) that start with a
+  capital letter are exported from a package
+- If you import a package, you can only use exported items
+===============================================================================
+Method
+------
+- Go does not have classes
+- However, you can define methods on types (including structs)
+
+example
+// a method for the pony type
+func (p Pony) printFavorites() {
+	fmt.Println(p.Name, "likes", strings.Join(p.FavoriteFoods, ", "))
+}
+
+func main() {
+	dave := Pony{"dave", 3.2, 100, []string{"rocks"}}
+	dave.printFavorites() // dave likes rocks
+}
+
+Value Receiver
+--------------
+- Methods that operate on a copy of the original value
+- Changing attributes of the recieved value does nothing to the original
+
+Pointer Receiver
+----------------
+- Methods can modify the value to which the receiver points
+- More common than value receivers
