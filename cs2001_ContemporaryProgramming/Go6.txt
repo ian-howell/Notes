@@ -1,0 +1,174 @@
+Methods
+-------
+- A method can only be defined for a type that is declared in the same package
+  - If we're working on a method in package 'stuff' then the receiver for that
+    method to be declared in package 'stuff'
+  - A method's receiver cannot be an interface type
+===============================================================================
+Interfaces
+----------
+- An interface is a type that defines a set of methods
+- You can implement an interface by implementing all of its methods
+- Usually have a name like __er (eg Reader, Writer, etc)
+- Be careful with pointer and value receivers because there is less help with
+  implicit referencing and dereferencing
+- The zero value for an interface is nil
+
+example
+package main
+
+import (
+	"fmt"
+)
+
+type Eater interface {
+	Eat(string)
+}
+
+func FeedCorn(e Eater) {
+	e.Eat("corn")
+}
+
+type Dog struct {
+	Stomach []string
+}
+
+func (d *Dog) Eat(f string) {
+	d.Stomach = append(d.Stomach, f)
+}
+
+type Cow struct {
+	Stomachs [4][]string
+}
+
+func (c *Cow) Eat(f string) {
+	c.Stomachs[0] = append(c.Stomachs[0], f)
+}
+
+func (c *Cow) Moo() {
+	fmt.Println("Moo")
+}
+
+func main() {
+	d := Dog{}
+	c := Cow{}
+	fmt.Println(d, c)
+
+	d.Eat("spaghetti")
+	c.Eat("sammich")
+	fmt.Println(d, c)
+
+	var e Eater
+	e = &d
+
+	e.Eat("MOAR SPAGHETTI!!!")
+	fmt.Println(e)
+	fmt.Println(d)
+
+	var blah Eater
+	blah = &Dog{}
+
+	blah.Eat("TEST")
+	fmt.Println(blah)
+
+	FeedCorn(&c)
+	FeedCorn(&d)
+	FeedCorn(blah)
+
+	fmt.Println(c, d, blah)
+}
+===============================================================================
+Here's two imnterfaces in fmt that we're going to implement
+
+type Stringer interface {
+  String() string
+}
+
+type GoStringer interface {
+  GoString() string
+}
+
+example
+package main
+
+import (
+	"fmt"
+)
+
+type Pony struct {
+	Name           string
+	Height, Weight float64
+	Foods          []string
+}
+
+// Alias!
+type Ponies []Pony
+
+func (p Pony) String() string {
+	return fmt.Sprintf("%s (%f)", p.Name, p.Weight)
+}
+
+func (p Pony) GoString() string {
+
+	return fmt.Sprintf("%s - h:%f w:%f", p.Name, p.Height, p.Weight)
+}
+
+func main() {
+	p := Pony{Name: "dave"}
+	fmt.Printf("%s\n", p)  // dave (0.000)     <- weight
+	fmt.Printf("%#v\n", p) // dave - h:0.000 w:0.000
+}
+===============================================================================
+Using sort.Interface
+
+type Interface interface {
+  Len() int
+  Less(i, j int) bool
+  Swap(i, j int)
+}
+
+example
+package main
+
+import (
+	"fmt"
+	"sort"
+)
+
+type Pony struct {
+	Name           string
+	Height, Weight float64
+	Foods          []string
+}
+
+// Alias!
+type Ponies []Pony
+
+func (ps Ponies) Len() int {
+	return len(ps)
+}
+
+func (ps Ponies) Less(i, j int) bool {
+	return ps[i].Weight < ps[j].Weight
+}
+
+func (ps Ponies) Swap(i, j int) {
+	ps[i], ps[j] = ps[j], ps[i]
+}
+
+func (p Pony) String() string {
+	return fmt.Sprintf("%s (%f)", p.Name, p.Weight)
+}
+
+func main() {
+	ranch := make(Ponies, 10)
+	for i := range ranch {
+		ranch[i].Name = fmt.Sprintf("%s", string(i+48))
+		ranch[i].Weight = float64(i % 3)
+	}
+	fmt.Println(ranch[0])
+	fmt.Println(ranch)
+	sort.Stable(ranch)
+	fmt.Println(ranch)
+	// [0(0.00) 3(0.00) 6(0.00) 9(0.00) ..... ]
+}
