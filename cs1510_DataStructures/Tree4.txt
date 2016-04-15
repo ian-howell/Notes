@@ -1,0 +1,50 @@
+MOAR TREES
+----------
+Remove(T, x)
+
+void remove(BSTreeNode* t, const T& x)
+{
+  // If this node is empty, then the item wasn't found
+  if (t == NULL)
+    return;
+
+  // Compare to the root
+  if (x < t->m_data)
+  {
+    remove(t->m_left, x);
+  }
+  if (x > t->m_data)
+  {
+    remove(t->m_right, x);
+  }
+  else // Otherwise, x == t->m_data
+  {
+    if (t->m_right && t->m_left == NULL) // If t is a leaf
+    {
+      delete t;
+      t = NULL;
+    }
+    else if (t->m_right == NULL || t->m_left == NULL) // If t has only 1 child
+    {
+      // Guess that the child is on the right
+      BSTreeNode* child = t->m_right;
+
+      if (child == NULL) // I guessed wrong
+      {
+        child - t->m_left;
+      }
+
+      // Move the child up
+      delete t;
+      t = child;
+    }
+    else // t must have 2 children
+    {
+      // Get the maximum node from the left, and promote it
+      t->m_data = findMax(t->m_left);
+
+      // Remove the old node recursively
+      remove(t->left, t->m_data);
+    }
+ }
+}
