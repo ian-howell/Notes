@@ -1,0 +1,36 @@
+ADT Graphs
+----------
+- A collection of objects with a relationship among them
+- Gets rid of unneeded details (abstraction)
+- Invented by Leonard Euler
+
+Definition
+----------
+- A graph G = <V, E>
+  - V is a set of vertices
+  - E is a set of edges - An edge is a pair <u, w> in which both u and w are in
+    the set V
+    - If the set E is "symmetric" (ie, if <u, w> is in E then <w, u> is in E),
+      then the graph is called undirected
+    - The edge <u, u> is called a loop
+    - A graph with no loops is called a simple graph
+    - Vertex w is adjacent to vertex u if the pair <u, w> is in E
+- The degree of vertex u is the number of vertices adjacent to u
+- The degree of the graph is the highest degree of a vertex in G
+- A path in a graph is a sequence of vertices such that <ui, ui+1> must be in
+  the set E
+  - example: <u0, u1, u2, u3, ... un>
+  - If a path does not contain any loops, it is a simple path
+  - A non-empty path has length n
+- A cycle is a path where with length greater than 0 where u0 == un
+
+Example
+V = {kci, stl, lax, dfw, maa}
+E = {
+     <lax, kci>,
+     <kci, stl>,
+     <kci, dfw>,
+     <dfw, maa>,
+     <stl, maa>,
+     <stl, lax>
+    }
