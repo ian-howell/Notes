@@ -1,0 +1,147 @@
+Channels
+--------
+// Deadlock because c is unbuffered
+c := make(chan int)
+c <- 1
+fmt.Println(<-c)
+
+// Sending / Receiving over a buffered channel
+c := make(chan int, 10)
+c <- 5
+c <- 4
+c <- 3
+fmt.Println(<-c) // 5
+fmt.Println(<-c) // 4
+fmt.Println(<-c) // 3
+//fmt.Println(<-c) // Deadlock
+===============================================================================
+Word Count Example
+------------------
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"io"
+	"os"
+)
+
+func countWords(reader io.Reader, counts chan int) {
+	scanner := bufio.NewScanner(reader)
+	scanner.Split(bufio.ScanWords)
+	count := 0
+	for scanner.Scan() {
+		count++
+	}
+	if scanner.Err() != nil {
+		fmt.Println("Problem counting words!")
+	}
+	counts <- count
+}
+
+func main() {
+	files := []string{"hugefile1.txt", "hugefile2.txt", "hugefile3.txt"}
+	counts := make(chan int)
+	for _, filename := range files {
+		file, err := os.Open(filename)
+		if err != nil {
+			fmt.Println("Problem opening", filename)
+		} else {
+			defer file.Close()
+			go countWords(file, counts)
+		}
+	}
+	for i := 0; i < len(files); i++ {
+		fmt.Println(<-counts)
+	}
+}
+===============================================================================
+The Close Function
+------------------
+- Builtin
+- Closes a channel to indicate that nothing else will be sent
+- Sending to a closed channel causes a panic
+- Receiving from a closed channel gives you the zero value of that chan's type
+- Closing channels is not required
+// ok is false if the channel is closed
+v, ok := <- ch
+for x := range ch {
+  // loops as long as ch is not closed
+}
+===============================================================================
+Signaling the end of input with close
+-------------------------------------
+package main
+
+import (
+	"fmt"
+)
+
+func fib(n int, c chan int) {
+	x, y := 0, 1
+	for i := 0; i < n; i++ {
+		c <- x
+		x, y = y, x+y
+	}
+	close(c)
+}
+
+func main() {
+	c := make(chan int)
+	go fib(5, c)
+	for val := range c {
+		fmt.Println(val)
+	}
+}
+===============================================================================
+package main
+
+import (
+	"fmt"
+	"math"
+	"math/rand"
+)
+
+type Coordinate struct {
+	X, Y float64
+}
+
+func printDistance(coords chan Coordinate, done chan bool) {
+	for c := range coords {
+		fmt.Println("Distance:", math.Hypot(c.X, c.Y))
+	}
+	done <- true
+}
+
+func main() {
+	c := make(chan Coordinate)
+	d := make(chan bool)
+	for i := 0; i < 3; i++ {
+		go printDistance(c, d)
+	}
+	for i := 0; i < 10000; i++ {
+		c <- Coordinate{rand.Float64(), rand.Float64()}
+	}
+	close(c)
+	for i := 0; i < 3; i++ {
+		<-d
+	}
+}
+===============================================================================
+Select statment
+---------------
+- Select statments wait on multiple communications
+- Runs the first one that's ready
+- If multiple are ready, it runs one at random
+
+//example
+func f(a, b chan int) {
+	for {
+		select {
+		case <-a:
+			fmt.Println("Got an a")
+		case <-b:
+			fmt.Println("Got a b")
+		}
+	}
+}
