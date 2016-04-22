@@ -1,0 +1,30 @@
+A.D.T. Graph
+------------
+- DAG: Directed Acyclic Graph
+- There is a function from edges to values called "weight function"
+  - If such a function exists, the graph is called "weighted"
+===============================================================================
+Operations
+----------
+addVertext(G, u)
+addEdge(G, u)
+Neightbors(G, u)
+===============================================================================
+Adjacency Matrix
+----------------
+- Vertices are stored in an array
+- Edges are stored in a 2x2 array, where each element is either a bool or a
+  weight
+
+Pros: simple
+Cons: memory usage
+===============================================================================
+Adjacency List
+--------------
+- The Graph is a dynamic array of vertices, where each vertex is the head of a
+  linked list
+  - Each member of the linked list is a vertx that is reachable from the head
+  - If the graph is weighted,
+
+Pros: memory usage
+Cons: complex
