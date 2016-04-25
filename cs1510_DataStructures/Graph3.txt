@@ -1,0 +1,30 @@
+DS Graph
+--------
+- Given a directed graph G, is there a cycle in G?
+- If a node does not have neighbors, then it can not be part of a cycle
+- If you remove such a node, you get a new graph (which may have new
+  neighborless nodes)
+  - If you can continue doing this until there are no more nodes, then the
+    graph is acyclic
+===============================================================================
+Topological Sort
+----------------
+- A sequence of vertices
+  - <u0, u1, u2, ..., un>
+  - If there is a path from ui to uj, ui appears later in the sequence than uj
+    - example: if there is such a path <4, 5, 6>, then in the topological sort,
+      6 must appear before 4, ie <..., 6, ..., 4, ...>
+-------------------------------------------------------------------------------
+Topologic Sort Algorithm
+------------------------
+- Consider a table of vertex degrees
+  Node:     1 2 3 4 5 6 7
+  Degree:   3 1 3 2 2 1 0
+
+  - Repeat
+    - find the vertex `v` which has degree 0
+    - place it in the topological sort
+    - remove v from the table
+    - for every node `w` who has `v` as a neighbor
+      - reduce w's degree by 1
+  - Until the table is empty OR there is no node of degree 0 in the table
