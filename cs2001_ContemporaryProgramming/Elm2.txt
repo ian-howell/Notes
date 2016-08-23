@@ -1,0 +1,53 @@
+The Elm Architecture
+--------------------
+- Model - describes the data required to represent/display your app/page
+- Update function - produce a new model based on the current app model and some
+  action
+- View function - displays a model
+
+                   model
+    rendered by /        ^   update
+               v          \
+               view -----> update
+                  send actions
+
+===============================================================================
+update : ( ( Time, Time ), { x : Int, y : Int } ) -> Model -> Model
+view : ( Int, Int ) -> Model -> Element
+setVelocity : { x : Int, y : Int } -> Creature -> Creature
+updatePosition : Time -> Creature -> Creature
+setDirection : Creature -> Creature
+getSeed : Time -> Model -> Random.Seed
+isOverlapple : Creature -> Apple -> Bool
+spawnApple : Random.Seed -> ( Maybe Apple, Maybe Random.Seed )
+
+type alias Creature =
+  { x : Float
+  , y : Float
+  , vx : Float
+  , vy : Float
+  , dir : (String, String)
+  }
+
+type alias Apple = 
+  { x : Float
+  , y : Float
+  }
+
+type alias Model =
+  { creature : Creature
+  , apple : Maybe Apple
+  , seed : Maybe Random.Seed
+  , eaten : Int
+  }
+
+Imports
+-------
+Debug
+Graphics.Element
+Graphics.Collage
+Keyboard
+Random
+Time
+Text
+Window

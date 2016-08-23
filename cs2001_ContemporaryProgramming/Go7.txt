@@ -1,0 +1,157 @@
+Empty Interface
+---------------
+- The interface type that specifies zero methods
+
+interface {}
+
+- An empty interface can hold values of any type
+- Every type implements the empty interface
+- They are used by code that handles values of an unknown type
+
+example
+package main
+
+import (
+	"fmt"
+)
+
+func describe(i interface{}) {
+	fmt.Printf("(%v, %T)\n", i, i)
+}
+
+func main() {
+	var i interface{}
+	describe(i) // (<nil>, <nil>)
+	i = 5
+	describe(i) // (5, int)
+	i = "hello"
+	describe(i) // (hello, string)
+}
+===============================================================================
+Type Assertion
+--------------
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var i interface{} = "hello"
+	s := i.(string) // check that i has a string
+	fmt.Println(s) // hello
+}
+
+//another main
+func main() {
+	var i interface{} = "hello"
+	s, ok := i.(string)
+	if ok {
+		fmt.Println(s) // hello
+	}
+}
+
+// another example
+func do(i interface{}) {
+	switch v := i.(type) {
+	case int:
+		fmt.Printf("2 * %v is %v\n", v, v*2)
+	case string:
+		fmt.Printf("%q is %v bytes long\n", v, len(v))
+	default:
+		fmt.Printf("?\n")
+	}
+}
+
+func main() {
+	do(21)
+	do("hello")
+	do(true)
+}
+// output:
+// 2 * 21 is 42
+// "hello" is 5 bytes long
+// ?
+===============================================================================
+Concurrency
+-----------
+- When parts of your code are running concurrently, you are often unable to
+  determine the order in which things will happen
+- Be careful
+===============================================================================
+Goroutines
+----------
+- A Goroutine is a lightweight thread of execution managed by the Go runtime
+  - Independent, concurrent thread of control
+  - Have the same address space
+- When main() returns, the program exits
+  - It does not wait for other Goroutines to complete
+- A "go" statement starts the execution of a function call as a new goroutine
+  - Must be a function/method call
+  - Unlike a regular call, the program exectuion does not wait for the invoked
+    function to complete
+  // Example go f()
+
+// example
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func print(s string) {
+	for i := 0; i < 3; i++ {
+		fmt.Print(s)
+		time.Sleep(1 * time.Second)
+	}
+}
+
+func main() {
+	go print("hello ")  // concurrent call
+	time.Sleep(500 * time.Millisecond)
+	for i := 0; i < 3; i++ {
+		fmt.Println("world!")
+		time.Sleep(1 * time.Second)
+	}
+	fmt.Println("Bye")
+}
+===============================================================================
+Channels (chan)
+---------------
+- Channels are used to communicate between / with goroutines
+- You can send and recieve over a channel
+- They work like a queue (FIFO)
+- Unbuffered channel - communication succeeds only when both a sender and a
+  receiver are ready
+- Buffered - communication succeeds without blocking if the buffer is not full
+  (sending) or is not empty (receiving)
+
+// example
+// sending / receiving over an unbuffered channel
+func keepPrinting(strings chan string) {
+	var temp string
+	for {
+		temp = <-strings
+		fmt.Println(temp)
+		// Also could have done
+		// fmt.Println(<-strings)
+	}
+}
+
+func main() {
+	// Unbuffered
+	c := make(chan string)
+	go keepPrinting(c)
+	time.Sleep(5 * time.Second)
+	c <- "apple"
+	c <- "banana"
+	c <- "cherry"
+	time.Sleep(1 * time.Second) // Race condition stuff
+}
+===============================================================================
+// What happens here?
+c := make(chan string)
+c <-"apple"
+fmt.Print(<-c)
+// Program will deadlock

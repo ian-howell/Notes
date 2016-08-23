@@ -1,0 +1,17 @@
+Functional Programming
+----------------------
+- A type of declarative programming
+- Composing the solution to a problem as a set of functions to be executed
+  - You carefully define ethe input to each function nad what each function
+    returns
+  - Avoids state and mutable data
+- Pure function maintain no state
+  - They only depend on the input they are given when called
+===============================================================================
+Elm Development
+===============
+What it's used for
+------------------
+- creating web GUIs
+===============================================================================
+* we are using verion 0.16
