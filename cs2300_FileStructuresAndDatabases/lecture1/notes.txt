@@ -1,0 +1,62 @@
+Database - A collection of related data
+Data - Known facts that can be recorded nad have an implicit meaning
+Mini-world - Some part of the real world about which data is stored in a database
+
+Database Management System (DBMS)
+- A software package / system to facilitate the creation and
+  maintenance of a copmuterized database
+- Define (data types, structures, constraints)
+- Construct (storing data on some storage medium controlled by DBMS)
+
+Course Goal
+- Understand the foundations on which today's work is built
+  - Existing database systems
+- Build your own database systems by the end of the semester
+  - Complete a 3-phase semester-long course project
+
+Contact information
+- Katrina Ward
+  - Office: CS346
+  - Hours:
+    - M 2-3
+    - T 1-3
+  - Email: kjw26b@mst.edu
+- Course Website: http://canvas.mst.edu
+
+Course Outline
+1. Course Intro
+2. Database System Concepts
+3. Entity-Relationship Model
+4. Enhancsed Entity-Relationship Model
+5. Relational Data Model
+6. Relational Data Model Mapping
+7. Relational Algebra
+8. SQL
+9. Functional Dependency
+10. Disk Storage, basic file structures and hashing
+11. Indexing structures for files
+
+Course methodology
+- Lectures to present the concepts
+  - Unless otherwise noted, all the materials that you need will be
+    covered in class
+  - Interactions
+- Reading will fill in the details
+  - Elmasri, R. and Navathe, S., Fundamentals of Database Systems, 7th
+  - TEXTBOOK IS REQUIRED FOR HOMEWORK
+- Homework and Projects get you to _understand_ what you've read and heard
+  - 4 writted homeworks
+  - 4 quizzes
+  - 1 project
+
+Grading
+- You should probably just check the website...
+
+START YOUR PROJECT NOW
+- To have a successful project, you need to start learning how to design a
+  web interface by yourself NOW
+- XAMPP (MySQL + PHP) is recommended to implement your project.
+  - http://www.apachefriends.org/en/xampp.html
+- PHP tutorials:
+  - http://www.freewebmasterhelp.com/tutorials/phpmysql/1
+  -http://www.w3schools.com/PHP/default.asp
