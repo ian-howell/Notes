@@ -1,0 +1,58 @@
+ADT Heap
+--------
+- Binary Tree which:
+  - Every level except the bottom on is complete
+  - For every node x
+    - x is less than its children (MaxHeap)
+    - x is greater than its children (MinHeap)
+  - Left child is found as 2i + 1
+  - Right child is found as 2i + 2
+  - Parent is found as floor( (i-1) / 2)
+
+===============================================================================
+DS Heap
+-------
+insert(T, x)
+{
+  m_data[m_size] = x
+  m_size++
+  // percolate up:
+  // compare to the parent. If it is greater than the parent, swap the
+  // parent with the child
+}
+
+template <typename T>
+void insert(const T& x)
+{
+  m_data[m_size] = x;
+  m_size++;
+
+  int i = m_size - 1;
+  while (i > 0 && m_data[i] > m_data[(i-1)/2])
+  {
+    swap(m_data[i], m_data[(i-1)/2];
+    i = (i-1)/2;
+  }
+}
+
+getMax()
+
+void removeMax()
+{
+  // CHECK IF THE HEAP IS EMPTY
+
+  // Move the last element to where the old retired max used to be
+  m_data[0] = m_data[m_size-1];
+  m_size--;
+
+  // Percolate down, starting at the root (i = 0)
+  int i = 0;
+
+  // Find the greatest of the 2 children
+  // In a final draft, you need to actually check that the children exist
+  while (i < m_size && m_data[i] < max(m_data[2i + 1], m_data[2i +2]))
+  {
+    swap(m_data[i], MAX_SHILD FROM MAX OP];
+    i = LOCATION OF MAX CHILD
+  }
+}

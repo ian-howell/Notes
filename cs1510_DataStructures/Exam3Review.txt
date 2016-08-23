@@ -1,0 +1,40 @@
+Recursion
+---------
+- recursive algorithm
+- Recursive Backtracking
+- QuickSort
+===============================================================================
+ADT Tree
+--------
+- Theory
+- Tree traversals
+===============================================================================
+ADT BSTree
+----------
+- Definition
+- Theory
+
+DS BSTreeNode
+- Code
+
+DS Array BSTree
+===============================================================================
+ADT Heap
+--------
+- Theory
+  - MinHeap
+  - MaxHeap
+
+DS ArrayHeap
+===============================================================================
+ADT Graph
+---------
+- Theory
+- Know definitions of path, cycle, etc
+- DAG
+
+DS Adjacency List
+
+DS Adjacency Matrix
+
+Topological Sort

@@ -1,5 +1,5 @@
 MOAR TREES
-----------
+  ----------
 Remove(T, x)
 
 void remove(BSTreeNode* t, const T& x)
@@ -46,5 +46,5 @@ void remove(BSTreeNode* t, const T& x)
       // Remove the old node recursively
       remove(t->left, t->m_data);
     }
- }
+  }
 }

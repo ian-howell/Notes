@@ -1,0 +1,59 @@
+Depth First Search using recursion
+----------------------------------
+Given two nodes a, b
+return path <a, n0, n1, ..., b>
+
+rec_path_search(a, b, path p)
+{
+  if (a == b)
+  {
+    success!
+  }
+  else
+  {
+    for every neighbor u of a
+    {
+      add u to p
+      solve = rec_path_search(u, b, p)
+      if (solve)
+        success!
+    }
+    remove u from p
+  }
+  fail!
+}
+===============================================================================
+Depth First Search using iteration
+----------------------------------
+path_search(a, b, path p)
+{
+  stack S
+  push a
+  while s is not empty
+    x = top
+    if (x == b)
+      success!
+    else
+      pop
+      for every neighbor u of x
+        push u
+  fail!
+}
+===============================================================================
+Breadth First Search using interation
+-------------------------------------
+path_search(a, b, path p)
+{
+  Queue q
+  enqueue a
+  while q is not empty
+    x = top
+    if (x == b)
+      success!
+    else
+      dequeue
+      for every neighbor u of x
+        enqueue u
+  fail!
+}
+

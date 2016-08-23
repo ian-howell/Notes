@@ -1,0 +1,17 @@
+ADT Set
+-------
+- An unordered collection of elements (of the same type)
+- Does not allow repetition
+
+Operations
+----------
+- insert(S, e)
+- remove(S, e)
+- find(S, e)
+===============================================================================
+DS TreeSet
+- as a Binary Search Tree
+===============================================================================
+ADT Map
+-------
+- Set of pairs
