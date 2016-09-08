@@ -1,0 +1,65 @@
+Utilitarianism Wrapup
+=====================
+Principle of Utility
+- Good actions increase pleasure / decrease pain
+- "The greater good"
+
+Act Utilitarians
+- Apply this principle to _each_action_
+- Bentham-like calculus
+- There's no assumption at the outset that anything is
+  prefered / off-limits (outside of utility)
+
+Rule Utilitarians
+- Don't have to "reinvent the wheel" with morality
+- Societal "rules of thumb" that actually promote utility
+  - don't lie, don't steal, etc
+- Saves time
+- Mill-like on rights
+
+===============================================================================
+Case 1 - Hermit in the Woods
+----------------------------
+There is a hermit who lives in the woods. He's got a bunch of gold. There is a
+nearby village, currently afflicted by famine. A villager happens across the
+hermit and has to decide whether or not to kill the hermit and bring the gold
+back to his village.
+
+Act Utilitarian
+- Kill the hermit, steal his stuff
+- If he doesn't take this action, people in his village will suffer
+  when they didn't need to
+
+Rule Utilitarian
+- Doesn't kill the hermit
+- Society will work better when we aren't crossing that societal boundary
+
+===============================================================================
+Case 2 - Voting
+---------------
+Should I vote?
+
+Act Utilitarian
+- How will my vote make the biggest impact?
+- Depends where time is best spent
+- Depends on if you are in a swing state - 1 vote may make the difference
+
+Rule Utilitarian
+- Yes -> It is a civic duty
+- Democracy works better when people are more involved and more educated
+
+===============================================================================
+Higher / Lower Pleasures
+------------------------
+Bentham
+- Just measure the pleasure (quantity)
+
+Mill
+- Need to discriminate between higher / lower (quality)
+  - We're actually happier with higher pleasures
+  - Societies that encourage higher pleasures are happier
+
+Sandel's test (Shakespeare vs Fear Factor vs Simpsons)
+- Everyone prefers Simpsons
+- What can we conclude from that?
+
