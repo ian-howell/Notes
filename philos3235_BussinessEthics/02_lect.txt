@@ -1,0 +1,20 @@
+Moral Dilemmas - Trolley Problem
+================================
+
+What is Moral Theory?
+---------------------
+- Deals with weighting out moral values
+  - primary: self-interest, consequences, strict principles, virtues
+
+- Moral Dilemmas - show a conflict of values - have to choose one or the other
+  - which do I think is more important and why?
+
+Trolley Car Problem
+-------------------
+- There is a trolley car moving along a track
+  - The track forks off int 2 tracks: A and B
+- There are 5 people standing on track A
+- There is 1 person standing on track B
+
+- Should the trolley driver switch from track A to track B?
+  - Utilitarian approach - "Ought implies Can"
